@@ -46,7 +46,35 @@ This project is organized as a monorepo using npm workspaces with the following 
    EXPO_PUBLIC_LIVESTORE_SYNC_URL=http://localhost:8787
    ```
 
-4. Start the development servers:
+4. Set up the Cloudflare D1 database for the sync backend:
+
+   ```bash
+   cd packages/sync-backend
+   ```
+
+   Create a new D1 database in Cloudflare:
+
+   ```bash
+   npx wrangler d1 create livestore-sync-cf-demo
+   ```
+
+   This will output something like:
+
+   ```
+   ✅ Successfully created DB 'livestore-sync-cf-demo' in account 'your-account'
+   Created database 'livestore-sync-cf-demo' with ID: fd58992d-e1fd-45a2-9e41-2f1bbe80f7ea
+   ```
+
+   Update the `wrangler.toml` file with your database ID:
+
+   ```toml
+   [[d1_databases]]
+   binding = "DB"
+   database_name = "livestore-sync-cf-demo"
+   database_id = "your-database-id-here"
+   ```
+
+5. Start the development servers:
 
    For the web application:
 

@@ -12,9 +12,8 @@ new_classes = ["WebSocketServer"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "livestore-sync-cf-demo"
-database_id = "fd58992d-e1fd-45a2-9e41-2f1bbe80f7ea"
-# database_id = "${LIVESTORE_CF_SYNC_DATABASE_ID}"
+database_name = "livestore-test"
+database_id = "${LIVESTORE_CF_SYNC_DATABASE_ID}"
 
 [vars]
 # should be set via CF dashboard (as secret)
