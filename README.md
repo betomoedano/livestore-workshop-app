@@ -102,5 +102,4 @@ This project is organized as a monorepo using npm workspaces with the following 
 This project uses:
 
 - Bun as the package manager and runtime environment
-- npm workspaces for monorepo management
-- Modern JavaScript/TypeScript development practices
+- bun workspaces for monorepo management
