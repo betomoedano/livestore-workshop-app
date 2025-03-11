@@ -1,6 +1,5 @@
 import { makeAdapter } from "@livestore/adapter-expo";
 import { LiveStoreProvider } from "@livestore/react";
-import { nanoid } from "@livestore/utils/nanoid";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
@@ -16,8 +15,17 @@ import { ListTodos } from "./components/ListTodos.tsx";
 import { Meta } from "./components/Meta.tsx";
 import { NewTodo } from "./components/NewTodo.tsx";
 import { mutations, schema, tables } from "./livestore/schema.ts";
+import { makeWsSync } from "@livestore/sync-cf";
 
-const adapter = makeAdapter();
+const adapter = makeAdapter({
+  sync: {
+    makeBackend: ({ storeId }) =>
+      makeWsSync({
+        storeId,
+        url: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL,
+      }),
+  },
+});
 
 export const App = () => {
   const [, rerender] = React.useState({});
@@ -26,7 +34,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="1" // DB for each id
+        storeId="5" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {
@@ -38,11 +46,11 @@ export const App = () => {
           );
         }}
         boot={(store) => {
-          if (store.query(tables.todos.query.count()) === 0) {
-            store.mutate(
-              mutations.addTodo({ id: nanoid(), text: "Make coffee" })
-            );
-          }
+          // if (store.query(tables.todos.query.count()) === 0) {
+          //   store.mutate(
+          //     mutations.addTodo({ id: nanoid(), text: "Make coffee" })
+          //   );
+          // }
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}

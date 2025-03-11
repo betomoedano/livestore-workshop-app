@@ -1,0 +1,17 @@
+{
+  "name": "livestore-example-src-todomvc-sync-cf",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@livestore/sync-cf": "0.3.0-dev.19"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "wrangler": "^3.114.0"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}

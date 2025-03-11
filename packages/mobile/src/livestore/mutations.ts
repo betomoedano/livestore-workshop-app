@@ -1,52 +1,55 @@
-import { defineMutation, sql } from '@livestore/livestore'
-import { Schema } from 'effect'
+import { defineMutation, sql } from "@livestore/livestore";
+import { Schema } from "effect";
 
-import { Filter } from '../types.ts'
+import { Filter } from "../types.ts";
 
 export const addTodo = defineMutation(
-  'addTodo',
+  "addTodo",
   Schema.Struct({ id: Schema.String, text: Schema.String }),
-  sql`INSERT INTO todos (id, text, completed) VALUES ($id, $text, false)`,
-)
+  sql`INSERT INTO todos (id, text, completed) VALUES ($id, $text, false)`
+);
 
 export const completeTodo = defineMutation(
-  'completeTodo',
+  "completeTodo",
   Schema.Struct({ id: Schema.String }),
-  sql`UPDATE todos SET completed = true WHERE id = $id`,
-)
+  sql`UPDATE todos SET completed = true WHERE id = $id`
+);
 
 export const uncompleteTodo = defineMutation(
-  'uncompleteTodo',
+  "uncompleteTodo",
   Schema.Struct({ id: Schema.String }),
-  sql`UPDATE todos SET completed = false WHERE id = $id`,
-)
+  sql`UPDATE todos SET completed = false WHERE id = $id`
+);
 
 export const deleteTodo = defineMutation(
-  'deleteTodo',
+  "deleteTodo",
   Schema.Struct({ id: Schema.String, deleted: Schema.Number }),
-  sql`UPDATE todos SET deleted = $deleted WHERE id = $id`,
-)
+  sql`UPDATE todos SET deleted = $deleted WHERE id = $id`
+);
 
 export const clearCompleted = defineMutation(
-  'clearCompleted',
+  "clearCompleted",
   Schema.Struct({ deleted: Schema.Number }),
-  sql`UPDATE todos SET deleted = $deleted WHERE completed = true`,
-)
+  sql`UPDATE todos SET deleted = $deleted WHERE completed = true`
+);
 
 export const clearAll = defineMutation(
-  'clearAll',
+  "clearAll",
   Schema.Struct({ deleted: Schema.Number }),
-  sql`UPDATE todos SET deleted = $deleted`,
-)
+  sql`UPDATE todos SET deleted = $deleted`
+);
 
 export const updateNewTodoText = defineMutation(
-  'updateNewTodoText',
+  "updateNewTodoText",
   Schema.Struct({ text: Schema.String }),
   sql`UPDATE app SET newTodoText = $text`,
-)
+  {
+    clientOnly: true,
+  }
+);
 
 export const setFilter = defineMutation(
-  'setFilter',
+  "setFilter",
   Schema.Struct({ filter: Filter }),
-  sql`UPDATE app SET filter = $filter`,
-)
+  sql`UPDATE app SET filter = $filter`
+);
