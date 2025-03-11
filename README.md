@@ -31,7 +31,22 @@ This project is organized as a monorepo using npm workspaces with the following 
    bun install
    ```
 
-3. Start the development servers:
+3. Configure environment variables:
+
+   For the mobile application, create a `.env.local` file in the `packages/mobile` directory:
+
+   ```bash
+   cd packages/mobile
+   cp .env.local.example .env.local
+   ```
+
+   Then edit the `.env.local` file to set your sync server URL:
+
+   ```
+   EXPO_PUBLIC_LIVESTORE_SYNC_URL=http://localhost:8787
+   ```
+
+4. Start the development servers:
 
    For the web application:
 
