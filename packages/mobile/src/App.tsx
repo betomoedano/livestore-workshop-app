@@ -17,12 +17,16 @@ import { NewTodo } from "./components/NewTodo.tsx";
 import { mutations, schema, tables } from "./livestore/schema.ts";
 import { makeWsSync } from "@livestore/sync-cf";
 
+const syncUrl = __DEV__
+  ? process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_LOCAL
+  : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
+
 const adapter = makeAdapter({
   sync: {
     makeBackend: ({ storeId }) =>
       makeWsSync({
         storeId,
-        url: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL,
+        url: syncUrl,
       }),
   },
 });
