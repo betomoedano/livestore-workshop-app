@@ -46,7 +46,7 @@ This project is organized as a monorepo using npm workspaces with the following 
    EXPO_PUBLIC_LIVESTORE_SYNC_URL=http://localhost:8787
    ```
 
-4. Set up the Cloudflare D1 database for the sync backend:
+4. Set up the Cloudflare D1 database for the sync backend: (OPTIONAL - You can do this in localhost)
 
    ```bash
    cd packages/sync-backend
