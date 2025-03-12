@@ -1,8 +1,8 @@
 import "./App.css";
 import { queryDb } from "@livestore/livestore";
 import { app$ } from "@workshop/shared/queries";
-import { tables } from "@workshop/shared/schema";
-import { useQuery } from "@livestore/react";
+import { mutations, tables } from "@workshop/shared/schema";
+import { useQuery, useStore } from "@livestore/react";
 
 const visibleTodos$ = queryDb(
   (get) => {
@@ -17,32 +17,35 @@ const visibleTodos$ = queryDb(
 
 function App() {
   const visibleTodos = useQuery(visibleTodos$);
+  const { store } = useStore();
 
   return (
     <>
-      <h1>Todo</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-        }}
-      >
+      <h1>Todos</h1>
+      <ul className="todo-list">
         {visibleTodos.map((todo) => (
-          <code key={todo.id} style={{ display: "flex", gap: "10px" }}>
+          <li key={todo.id} style={{ display: "flex", gap: "10px" }}>
             <input
+              id={todo.id}
               type="checkbox"
               checked={todo.completed}
+              onChange={() =>
+                store.mutate(
+                  todo.completed
+                    ? mutations.uncompleteTodo({ id: todo.id })
+                    : mutations.completeTodo({ id: todo.id })
+                )
+              }
               style={{
                 backgroundColor: "black",
                 accentColor: "black",
                 color: "white",
               }}
             />
-            {todo.text}
-          </code>
+            <label htmlFor={todo.id}>{todo.text}</label>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 }
