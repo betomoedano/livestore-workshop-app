@@ -38,7 +38,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="5" // DB for each id
+        storeId="11" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {

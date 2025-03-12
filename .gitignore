@@ -33,7 +33,6 @@ yarn-error.*
 
 # local env files
 .env*.local
-.dev.vars
 
 # typescript
 *.tsbuildinfo
@@ -42,3 +41,7 @@ yarn-error.*
 .expo
 dist/
 web-build/
+
+# Wrangler
+.wrangler/
+.dev.vars
