@@ -1,7 +1,7 @@
 import { defineMutation, sql } from "@livestore/livestore";
 import { Schema } from "effect";
 
-import { Filter } from "../types.ts";
+import { Filter } from "./types.ts";
 
 export const addTodo = defineMutation(
   "addTodo",

@@ -14,7 +14,7 @@ import { Filters } from "./components/Filters.tsx";
 import { ListTodos } from "./components/ListTodos.tsx";
 import { Meta } from "./components/Meta.tsx";
 import { NewTodo } from "./components/NewTodo.tsx";
-import { mutations, schema, tables } from "./livestore/schema.ts";
+import { mutations, schema, tables } from "@workshop/shared/schema";
 import { makeWsSync } from "@livestore/sync-cf";
 
 const syncUrl = __DEV__

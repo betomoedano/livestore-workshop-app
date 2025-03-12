@@ -1,0 +1,19 @@
+{
+  "name": "@workshop/shared",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@livestore/livestore": "^0.3.0-dev.19",
+    "effect": "^3.13.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

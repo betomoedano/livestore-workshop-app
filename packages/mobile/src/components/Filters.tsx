@@ -1,64 +1,74 @@
-import { useQuery, useStore } from '@livestore/react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { useQuery, useStore } from "@livestore/react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { app$ } from '../livestore/queries.ts'
-import { mutations } from '../livestore/schema.ts'
-import type { Filter } from '../types.ts'
+import { app$ } from "@workshop/shared/queries";
+import { mutations } from "@workshop/shared/schema";
+import type { Filter } from "@workshop/shared/types";
 
 export const Filters: React.FC = () => {
-  const { store } = useStore()
-  const { filter } = useQuery(app$)
+  const { store } = useStore();
+  const { filter } = useQuery(app$);
 
-  const setFilter = (filter: Filter) => store.mutate(mutations.setFilter({ filter }))
+  const setFilter = (filter: Filter) =>
+    store.mutate(mutations.setFilter({ filter }));
 
   return (
     <View style={styles.container}>
-      <Tag isActive={filter === 'all'} onPress={() => setFilter('all')}>
+      <Tag isActive={filter === "all"} onPress={() => setFilter("all")}>
         All
       </Tag>
-      <Tag isActive={filter === 'active'} onPress={() => setFilter('active')}>
+      <Tag isActive={filter === "active"} onPress={() => setFilter("active")}>
         Active
       </Tag>
-      <Tag isActive={filter === 'completed'} onPress={() => setFilter('completed')}>
+      <Tag
+        isActive={filter === "completed"}
+        onPress={() => setFilter("completed")}
+      >
         Completed
       </Tag>
     </View>
-  )
-}
+  );
+};
 
 const Tag = ({
   isActive,
   children,
   onPress,
 }: {
-  isActive: boolean
-  onPress: () => void
-  children: React.ReactNode
+  isActive: boolean;
+  onPress: () => void;
+  children: React.ReactNode;
 }) => {
   return (
-    <Pressable style={[styles.tag, isActive && styles.tagActive]} hitSlop={4} onPress={onPress}>
-      <Text style={[styles.tagText, isActive && styles.tagTextActive]}>{children}</Text>
+    <Pressable
+      style={[styles.tag, isActive && styles.tagActive]}
+      hitSlop={4}
+      onPress={onPress}
+    >
+      <Text style={[styles.tagText, isActive && styles.tagTextActive]}>
+        {children}
+      </Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     gap: 8,
   },
   tag: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: '#dedede',
+    borderColor: "#dedede",
     borderRadius: 8,
     paddingHorizontal: 8,
     paddingVertical: 4,
   },
   tagActive: {
-    borderColor: '#000',
-    shadowColor: '#000',
+    borderColor: "#000",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -68,9 +78,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   tagText: {
-    color: '#969696',
+    color: "#969696",
   },
   tagTextActive: {
-    color: '#000',
+    color: "#000",
   },
-})
+});

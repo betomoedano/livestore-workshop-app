@@ -1,25 +1,32 @@
-import { Entypo } from '@expo/vector-icons'
-import { useStore } from '@livestore/react'
-import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { Entypo } from "@expo/vector-icons";
+import { useStore } from "@livestore/react";
+import * as React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { mutations } from '../livestore/schema.ts'
+import { mutations } from "@workshop/shared/schema";
 
 export const Checkbox: React.FC<{
-  id: string
-  isCompleted: boolean
+  id: string;
+  isCompleted: boolean;
 }> = ({ id, isCompleted }) => {
-  const { store } = useStore()
+  const { store } = useStore();
 
   const handleCheckbox = () =>
-    store.mutate(isCompleted ? mutations.uncompleteTodo({ id }) : mutations.completeTodo({ id }))
+    store.mutate(
+      isCompleted
+        ? mutations.uncompleteTodo({ id })
+        : mutations.completeTodo({ id })
+    );
 
   return (
-    <TouchableOpacity onPress={handleCheckbox} style={isCompleted ? styles.checked : styles.unChecked}>
+    <TouchableOpacity
+      onPress={handleCheckbox}
+      style={isCompleted ? styles.checked : styles.unChecked}
+    >
       <Entypo name="check" size={16} color="#FAFAFA" />
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   checked: {
@@ -27,11 +34,11 @@ const styles = StyleSheet.create({
     height: 20,
     marginRight: 13,
     borderRadius: 6,
-    backgroundColor: '#262626',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#262626",
+    alignItems: "center",
+    justifyContent: "center",
     marginLeft: 15,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -45,11 +52,11 @@ const styles = StyleSheet.create({
     height: 20,
     marginRight: 13,
     borderWidth: 2,
-    borderColor: '#E8E8E8',
+    borderColor: "#E8E8E8",
     borderRadius: 6,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     marginLeft: 15,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -63,8 +70,8 @@ const styles = StyleSheet.create({
     height: 10,
     marginHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: '#262626',
+    backgroundColor: "#262626",
     marginRight: 13,
     marginLeft: 15,
   },
-})
+});

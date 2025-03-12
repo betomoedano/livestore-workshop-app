@@ -1,25 +1,25 @@
-import { queryDb } from '@livestore/livestore'
-import { useQuery } from '@livestore/react'
-import React from 'react'
-import { FlatList } from 'react-native'
+import { queryDb } from "@livestore/livestore";
+import { useQuery } from "@livestore/react";
+import React from "react";
+import { FlatList } from "react-native";
 
-import { app$ } from '../livestore/queries.ts'
-import { tables } from '../livestore/schema.ts'
-import { Todo } from './Todo.tsx'
+import { app$ } from "@workshop/shared/queries";
+import { tables } from "@workshop/shared/schema";
+import { Todo } from "./Todo.tsx";
 
 const visibleTodos$ = queryDb(
   (get) => {
-    const { filter } = get(app$)
+    const { filter } = get(app$);
     return tables.todos.query.where({
       deleted: null,
-      completed: filter === 'all' ? undefined : filter === 'completed',
-    })
+      completed: filter === "all" ? undefined : filter === "completed",
+    });
   },
-  { label: 'visibleTodos' },
-)
+  { label: "visibleTodos" }
+);
 
 export const ListTodos: React.FC = () => {
-  const visibleTodos = useQuery(visibleTodos$)
+  const visibleTodos = useQuery(visibleTodos$);
 
   return (
     <FlatList
@@ -29,5 +29,5 @@ export const ListTodos: React.FC = () => {
       initialNumToRender={20}
       maxToRenderPerBatch={20}
     />
-  )
-}
+  );
+};

@@ -1,34 +1,46 @@
-import { useQuery, useStore } from '@livestore/react'
-import { nanoid } from '@livestore/utils/nanoid'
-import React from 'react'
-import { Keyboard, Pressable, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import { useQuery, useStore } from "@livestore/react";
+import { nanoid } from "@livestore/utils/nanoid";
+import React from "react";
+import {
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
-import { app$ } from '../livestore/queries.ts'
-import { mutations } from '../livestore/schema.ts'
+import { app$ } from "@workshop/shared/queries";
+import { mutations } from "@workshop/shared/schema";
 
 export const NewTodo: React.FC = () => {
-  const { store } = useStore()
-  const { newTodoText } = useQuery(app$)
+  const { store } = useStore();
+  const { newTodoText } = useQuery(app$);
 
-  const updateNewTodoText = (text: string) => store.mutate(mutations.updateNewTodoText({ text }))
+  const updateNewTodoText = (text: string) =>
+    store.mutate(mutations.updateNewTodoText({ text }));
   const addTodo = () =>
     store.mutate(
       mutations.addTodo({ id: new Date().toISOString(), text: newTodoText }),
-      mutations.updateNewTodoText({ text: '' }),
-    )
+      mutations.updateNewTodoText({ text: "" })
+    );
   const addRandom50 = () => {
-    const todos = Array.from({ length: 50 }, (_, i) => ({ id: nanoid(), text: `Todo ${i}` }))
-    store.mutate(...todos.map((todo) => mutations.addTodo(todo)))
-  }
-  const reset = () => store.mutate(mutations.clearAll({ deleted: Date.now() }))
+    const todos = Array.from({ length: 50 }, (_, i) => ({
+      id: nanoid(),
+      text: `Todo ${i}`,
+    }));
+    store.mutate(...todos.map((todo) => mutations.addTodo(todo)));
+  };
+  const reset = () => store.mutate(mutations.clearAll({ deleted: Date.now() }));
 
-  const inputRef = React.useRef<TextInput>(null)
+  const inputRef = React.useRef<TextInput>(null);
 
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        Keyboard.dismiss()
-        inputRef.current?.blur()
+        Keyboard.dismiss();
+        inputRef.current?.blur();
       }}
     >
       <View style={styles.container}>
@@ -38,10 +50,10 @@ export const NewTodo: React.FC = () => {
           value={newTodoText}
           onChangeText={updateNewTodoText}
           onKeyPress={(e) => {
-            console.log(e.nativeEvent.key)
-            if (e.nativeEvent.key === 'Escape' || e.nativeEvent.key === 'Tab') {
-              Keyboard.dismiss()
-              inputRef.current?.blur()
+            console.log(e.nativeEvent.key);
+            if (e.nativeEvent.key === "Escape" || e.nativeEvent.key === "Tab") {
+              Keyboard.dismiss();
+              inputRef.current?.blur();
             }
           }}
           onSubmitEditing={addTodo}
@@ -57,17 +69,17 @@ export const NewTodo: React.FC = () => {
         </Pressable>
       </View>
     </TouchableWithoutFeedback>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     flexGrow: 0,
     flexBasis: 100,
     flexShrink: 0,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 10,
     width: 400,
   },
@@ -84,4 +96,4 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     fontSize: 12,
   },
-})
+});
