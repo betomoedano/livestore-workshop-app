@@ -94,7 +94,7 @@ importers:
   packages/shared:
     dependencies:
       '@livestore/livestore':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(37tzsqz6vaw3gfrf274jfkc7be)
       effect:
         specifier: ^3.13.10
@@ -107,8 +107,8 @@ importers:
   packages/sync-backend:
     dependencies:
       '@livestore/sync-cf':
-        specifier: 0.3.0-dev.19
-        version: 0.3.0-dev.19(kzea3h4xpnlvokzunfhge65sjm)
+        specifier: 0.3.0-dev.23
+        version: 0.3.0-dev.23(klktrnaioxdwqt26sqdoq5i4du)
     devDependencies:
       typescript:
         specifier: ^5.8.2
@@ -120,22 +120,22 @@ importers:
   packages/web:
     dependencies:
       '@livestore/adapter-web':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(37tzsqz6vaw3gfrf274jfkc7be)
       '@livestore/devtools-vite':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23
       '@livestore/livestore':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(37tzsqz6vaw3gfrf274jfkc7be)
       '@livestore/react':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(q36vkznkj5n7soqjybehoxe63a)
       '@livestore/sync-cf':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(klktrnaioxdwqt26sqdoq5i4du)
       '@livestore/utils':
-        specifier: ^0.3.0-dev.19
+        specifier: ^0.3.0-dev.23
         version: 0.3.0-dev.23(klktrnaioxdwqt26sqdoq5i4du)
       '@livestore/wa-sqlite':
         specifier: ^1.0.5-dev.1
@@ -1452,7 +1452,7 @@ packages:
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {node: '>=0.10.0'}
+    engines: {'0': node >=0.10.0}
 
   '@expo/cli@0.22.20':
     resolution: {integrity: sha512-BU2ASlw0Gaj3ou/TxVsgvzK+XK8Z14Yq3mmLyvMcMAQrdExZLNmvMZ3A3x6q2uMgSJM3aoQBUuVXS/Ny+lYgDA==}
@@ -1817,9 +1817,6 @@ packages:
   '@livestore/adapter-web@0.3.0-dev.23':
     resolution: {integrity: sha512-daLP0W40ZVKMUXt+whSHeHkxI2t+7QLIJbQ0crrt3gLVpf14e65A46BooStnY4vw6X87qqaCJpsOjiIxDwwCLg==}
 
-  '@livestore/common@0.3.0-dev.19':
-    resolution: {integrity: sha512-hcLAMjtJTNFtYY0oZrkbOA19B+K5W521oqp2CuU65B7G4seCLz7owQwxxVapuTEemQFfrVLNYQIJDXt176mX9Q==}
-
   '@livestore/common@0.3.0-dev.23':
     resolution: {integrity: sha512-2UDLJw/FTKUsZo2qfqld8zyBNf9R82LQEbCPOFSc5NV9CCZ1YpaTZ9S7SqlXMf01CmqKKFVBjlK/vtabpj9SVQ==}
 
@@ -1856,25 +1853,8 @@ packages:
   '@livestore/sqlite-wasm@0.3.0-dev.23':
     resolution: {integrity: sha512-BKxzo3HiVz7tnfTElzhQ1yDx2VqDy/ia7PLHiDmIl/Cv8XEODHsUIj0kZIt1NsWNr9ldTAIDOaPg092NYGI+5Q==}
 
-  '@livestore/sync-cf@0.3.0-dev.19':
-    resolution: {integrity: sha512-3dSSCGiftkVDo0SCcj+QwUNwqcE3g666I1LZp5GD1US/npR7YyAqEgcfjXIv6TDrFR1Pt1O17fcmRkvsg6zlig==}
-
   '@livestore/sync-cf@0.3.0-dev.23':
     resolution: {integrity: sha512-okFV70AaNDd5VBv9l3ia2+sPVEoyVu4SF57UYdGqygukn9I6ix5DDXK0OX4rZbGAgJGdAKcrE17R14c3HIEMag==}
-
-  '@livestore/utils@0.3.0-dev.19':
-    resolution: {integrity: sha512-pm6VumioYhUTTNqN8CSKK+FolLMKM5TUqt8Cjp/nlaLW5HyGUZpOsDQU2SCqSEYkYtYf2HgoW4gnaQcjQJ5HcA==}
-    peerDependencies:
-      '@effect/cli': ~0.56.1
-      '@effect/experimental': ~0.41.1
-      '@effect/opentelemetry': ~0.44.1
-      '@effect/platform': ~0.77.1
-      '@effect/platform-browser': ~0.56.1
-      '@effect/platform-bun': ~0.57.1
-      '@effect/platform-node': ~0.73.1
-      '@effect/vitest': ~0.18.1
-      '@opentelemetry/api': ~1.9.0
-      effect: ~3.13.1
 
   '@livestore/utils@0.3.0-dev.23':
     resolution: {integrity: sha512-AAG5PLoPFzZMKoUH2sbSNvsDC4rIFq8RWKnCdkoDtWxgNi+FTdnLhLkqfkmhq2zDGR6+0ryRabeWs/X2FelRng==}
@@ -4587,11 +4567,6 @@ packages:
   nanoid@3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
-  nanoid@5.1.0:
-    resolution: {integrity: sha512-zDAl/llz8Ue/EblwSYwdxGBYfj46IM1dhjVi8dyp9LQffoIGxJEAHj2oeZ4uNcgycSRcQ83CnfcZqEJzVDLcDw==}
-    engines: {node: ^18 || >=20}
     hasBin: true
 
   nanoid@5.1.3:
@@ -8248,24 +8223,6 @@ snapshots:
       - effect
       - utf-8-validate
 
-  '@livestore/common@0.3.0-dev.19(ymtg6mflfipkopgmpqtg2j6gde)':
-    dependencies:
-      '@livestore/utils': 0.3.0-dev.19(kzea3h4xpnlvokzunfhge65sjm)
-      '@opentelemetry/api': 1.9.0
-      graphology: 0.26.0-alpha1(graphology-types@0.24.8)
-      graphology-dag: 0.4.1(graphology-types@0.24.8)
-      graphology-types: 0.24.8
-    transitivePeerDependencies:
-      - '@effect/cli'
-      - '@effect/experimental'
-      - '@effect/opentelemetry'
-      - '@effect/platform'
-      - '@effect/platform-browser'
-      - '@effect/platform-bun'
-      - '@effect/platform-node'
-      - '@effect/vitest'
-      - effect
-
   '@livestore/common@0.3.0-dev.23(37tzsqz6vaw3gfrf274jfkc7be)':
     dependencies:
       '@livestore/utils': 0.3.0-dev.23(klktrnaioxdwqt26sqdoq5i4du)
@@ -8605,22 +8562,6 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/sync-cf@0.3.0-dev.19(kzea3h4xpnlvokzunfhge65sjm)':
-    dependencies:
-      '@livestore/common': 0.3.0-dev.19(ymtg6mflfipkopgmpqtg2j6gde)
-      '@livestore/utils': 0.3.0-dev.19(kzea3h4xpnlvokzunfhge65sjm)
-    transitivePeerDependencies:
-      - '@effect/cli'
-      - '@effect/experimental'
-      - '@effect/opentelemetry'
-      - '@effect/platform'
-      - '@effect/platform-browser'
-      - '@effect/platform-bun'
-      - '@effect/platform-node'
-      - '@effect/vitest'
-      - '@opentelemetry/api'
-      - effect
-
   '@livestore/sync-cf@0.3.0-dev.23(6gr5u53aearrm4je6br3yenrie)':
     dependencies:
       '@livestore/common': 0.3.0-dev.23(4m7zfqf6pvylvwkg4u5vpt3o3a)
@@ -8658,22 +8599,6 @@ snapshots:
       - '@effect/vitest'
       - '@opentelemetry/api'
       - effect
-
-  '@livestore/utils@0.3.0-dev.19(kzea3h4xpnlvokzunfhge65sjm)':
-    dependencies:
-      '@effect/cli': 0.57.1(@effect/platform@0.78.1(effect@3.13.12))(@effect/printer-ansi@0.41.12(@effect/typeclass@0.32.12(effect@3.13.12))(effect@3.13.12))(@effect/printer@0.41.12(@effect/typeclass@0.32.12(effect@3.13.12))(effect@3.13.12))(effect@3.13.12)
-      '@effect/experimental': 0.42.1(@effect/platform-node@0.74.1(@effect/platform@0.78.1(effect@3.13.12))(effect@3.13.12))(@effect/platform@0.78.1(effect@3.13.12))(effect@3.13.12)(ws@8.18.1)
-      '@effect/opentelemetry': 0.44.12(@opentelemetry/api@1.9.0)(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(effect@3.13.12)
-      '@effect/platform': 0.78.1(effect@3.13.12)
-      '@effect/platform-browser': 0.57.1(@effect/platform@0.78.1(effect@3.13.12))(effect@3.13.12)
-      '@effect/platform-bun': 0.58.1(@effect/platform@0.78.1(effect@3.13.12))(effect@3.13.12)
-      '@effect/platform-node': 0.74.1(@effect/platform@0.78.1(effect@3.13.12))(effect@3.13.12)
-      '@effect/vitest': 0.19.10(effect@3.13.12)(vitest@3.0.9(@types/node@22.13.10)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.0))
-      '@opentelemetry/api': 1.9.0
-      effect: 3.13.12
-      msgpackr: 1.11.2
-      nanoid: 5.1.0
-      pretty-bytes: 6.1.1
 
   '@livestore/utils@0.3.0-dev.23(6gr5u53aearrm4je6br3yenrie)':
     dependencies:
@@ -12118,8 +12043,6 @@ snapshots:
   nanoid@3.3.10: {}
 
   nanoid@3.3.4: {}
-
-  nanoid@5.1.0: {}
 
   nanoid@5.1.3: {}
 

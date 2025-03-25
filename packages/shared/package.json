@@ -10,7 +10,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@livestore/livestore": "^0.3.0-dev.19",
+    "@livestore/livestore": "^0.3.0-dev.23",
     "effect": "^3.13.10"
   },
   "devDependencies": {

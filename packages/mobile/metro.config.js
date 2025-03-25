@@ -11,8 +11,7 @@ config.resolver.unstable_conditionNames = ["require", "default"];
 // Add LiveStore Devtools middleware only in a local development environment
 if (!process.env.CI && process.stdout.isTTY) {
   addLiveStoreDevtoolsMiddleware(config, {
-    schemaPath: "./src/livestore/schema.ts",
-    storeId: "1",
+    schemaPath: "../../packages/shared/schema.ts",
   });
 }
 

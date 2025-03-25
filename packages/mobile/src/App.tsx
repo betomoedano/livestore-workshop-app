@@ -25,10 +25,16 @@ const adapter = makeAdapter({
   sync: {
     makeBackend: ({ storeId }) =>
       makeWsSync({
-        storeId,
+        // type: "cf",
+        storeId: storeId,
         url: syncUrl,
+        // roomId: storeId,
       }),
   },
+  // devtools: {
+  //   enabled: __DEV__,
+  //   channelName: "mobile-app",
+  // },
 });
 
 export const App = () => {
@@ -38,7 +44,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="11" // DB for each id
+        storeId="hello1" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {

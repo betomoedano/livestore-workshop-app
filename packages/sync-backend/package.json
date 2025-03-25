@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@livestore/sync-cf": "0.3.0-dev.19"
+    "@livestore/sync-cf": "0.3.0-dev.23"
   },
   "devDependencies": {
     "typescript": "^5.8.2",
