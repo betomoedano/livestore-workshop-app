@@ -11,7 +11,7 @@ export const Todo: React.FC<ITodo> = ({ id, text, completed }) => {
   const { store } = useStore();
 
   const handleDeleteTodo = () =>
-    store.mutate(mutations.deleteTodo({ id, deleted: Date.now() }));
+    store.commit(mutations.deleteTodo({ id, deleted: Date.now() }));
 
   return (
     <View style={styles.container}>

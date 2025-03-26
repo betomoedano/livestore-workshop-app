@@ -12,7 +12,7 @@ export const Checkbox: React.FC<{
   const { store } = useStore();
 
   const handleCheckbox = () =>
-    store.mutate(
+    store.commit(
       isCompleted
         ? mutations.uncompleteTodo({ id })
         : mutations.completeTodo({ id })

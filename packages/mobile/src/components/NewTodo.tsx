@@ -19,9 +19,9 @@ export const NewTodo: React.FC = () => {
   const { newTodoText } = useQuery(app$);
 
   const updateNewTodoText = (text: string) =>
-    store.mutate(mutations.updateNewTodoText({ text }));
+    store.commit(mutations.updateNewTodoText({ text }));
   const addTodo = () =>
-    store.mutate(
+    store.commit(
       mutations.addTodo({ id: new Date().toISOString(), text: newTodoText }),
       mutations.updateNewTodoText({ text: "" })
     );
@@ -30,9 +30,9 @@ export const NewTodo: React.FC = () => {
       id: nanoid(),
       text: `Todo ${i}`,
     }));
-    store.mutate(...todos.map((todo) => mutations.addTodo(todo)));
+    store.commit(...todos.map((todo) => mutations.addTodo(todo)));
   };
-  const reset = () => store.mutate(mutations.clearAll({ deleted: Date.now() }));
+  const reset = () => store.commit(mutations.clearAll({ deleted: Date.now() }));
 
   const inputRef = React.useRef<TextInput>(null);
 

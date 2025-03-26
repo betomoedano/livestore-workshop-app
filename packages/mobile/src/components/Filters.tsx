@@ -10,7 +10,7 @@ export const Filters: React.FC = () => {
   const { filter } = useQuery(app$);
 
   const setFilter = (filter: Filter) =>
-    store.mutate(mutations.setFilter({ filter }));
+    store.commit(mutations.setFilter({ filter }));
 
   return (
     <View style={styles.container}>

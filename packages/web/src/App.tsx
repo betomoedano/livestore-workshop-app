@@ -30,7 +30,7 @@ function App() {
               type="checkbox"
               checked={todo.completed}
               onChange={() =>
-                store.mutate(
+                store.commit(
                   todo.completed
                     ? mutations.uncompleteTodo({ id: todo.id })
                     : mutations.completeTodo({ id: todo.id })

@@ -1,4 +1,4 @@
-import { makeAdapter } from "@livestore/adapter-expo";
+import { makePersistedAdapter } from "@livestore/adapter-expo";
 import { LiveStoreProvider } from "@livestore/react";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -15,26 +15,14 @@ import { ListTodos } from "./components/ListTodos.tsx";
 import { Meta } from "./components/Meta.tsx";
 import { NewTodo } from "./components/NewTodo.tsx";
 import { mutations, schema, tables } from "@workshop/shared/schema";
-import { makeWsSync } from "@livestore/sync-cf";
+import { makeCfSync } from "@livestore/sync-cf";
 
 const syncUrl = __DEV__
   ? process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_LOCAL
   : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
 
-const adapter = makeAdapter({
-  sync: {
-    makeBackend: ({ storeId }) =>
-      makeWsSync({
-        // type: "cf",
-        storeId: storeId,
-        url: syncUrl,
-        // roomId: storeId,
-      }),
-  },
-  // devtools: {
-  //   enabled: __DEV__,
-  //   channelName: "mobile-app",
-  // },
+const adapter = makePersistedAdapter({
+  sync: { backend: makeCfSync({ url: syncUrl }), },
 });
 
 export const App = () => {
@@ -44,7 +32,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="hello1" // DB for each id
+        storeId="hello2" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {
@@ -57,13 +45,14 @@ export const App = () => {
         }}
         boot={(store) => {
           // if (store.query(tables.todos.query.count()) === 0) {
-          //   store.mutate(
+          //   store.commit(
           //     mutations.addTodo({ id: nanoid(), text: "Make coffee" })
           //   );
           // }
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}
+        syncPayload={{ authToken: 'insecure-token-change-me' }}
       >
         <InnerApp />
       </LiveStoreProvider>

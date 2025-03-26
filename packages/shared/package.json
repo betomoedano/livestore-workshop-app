@@ -10,8 +10,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@livestore/livestore": "^0.3.0-dev.23",
-    "effect": "^3.13.10"
+    "@livestore/livestore": "0.3.0-dev.24"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
