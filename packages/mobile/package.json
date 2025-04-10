@@ -9,7 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/vector-icons": "14.0.4",
+    "@expo/metro-runtime": "5.0.1-canary-20250408-7f0ab53",
+    "@expo/vector-icons": "14.1.0",
     "@livestore/adapter-expo": "0.3.0-dev.24",
     "@livestore/devtools-expo": "0.3.0-dev.24",
     "@livestore/livestore": "0.3.0-dev.24",
@@ -19,13 +20,14 @@
     "@livestore/utils": "0.3.0-dev.24",
     "@workshop/shared": "workspace:*",
     "babel-preset-expo": "12.0.0-preview.6",
-    "expo": "^52.0.9",
-    "expo-asset": "11.0.0",
-    "expo-crypto": "14.0.1",
-    "expo-sqlite": "15.2.0-canary-20250325-0a15ab6",
-    "expo-status-bar": "2.0.0",
-    "react": "18.3.1",
-    "react-native": "0.76.2"
+    "expo": "53.0.0-canary-20250408-7f0ab53",
+    "expo-asset": "11.1.1-canary-20250408-7f0ab53",
+    "expo-crypto": "14.1.1-canary-20250408-7f0ab53",
+    "expo-sqlite": "15.2.1-canary-20250408-7f0ab53",
+    "expo-status-bar": "2.1.1-canary-20250408-7f0ab53",
+    "react": "19.0.0",
+    "react-native": "0.79.0-rc.4",
+    "react-native-web": "~0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

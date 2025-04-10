@@ -22,7 +22,7 @@ const syncUrl = __DEV__
   : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
 
 const adapter = makePersistedAdapter({
-  sync: { backend: makeCfSync({ url: syncUrl }), },
+  sync: { backend: makeCfSync({ url: syncUrl }) },
 });
 
 export const App = () => {
@@ -32,7 +32,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="hello2" // DB for each id
+        storeId="a" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {
@@ -52,7 +52,7 @@ export const App = () => {
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}
-        syncPayload={{ authToken: 'insecure-token-change-me' }}
+        syncPayload={{ authToken: "insecure-token-change-me" }}
       >
         <InnerApp />
       </LiveStoreProvider>

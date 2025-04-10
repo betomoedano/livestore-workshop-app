@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "dev.livestore.livestore-expo"
@@ -23,15 +21,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "dev.livestore.livestoreexpo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
         "projectId": "a9d0eb9f-acf5-4cf1-ac11-bde0cc766e6f"
       }
-    }
+    },
+    "plugins": ["expo-asset", "expo-sqlite"]
   }
 }
