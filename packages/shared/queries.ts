@@ -1,5 +1,5 @@
-import { queryDb } from '@livestore/livestore'
+import { queryDb } from "@livestore/livestore";
 
-import { tables } from './schema.ts'
+import { tables } from "./schema.ts";
 
-export const app$ = queryDb(tables.app.query.row(), { label: 'app' })
+export const app$ = queryDb(tables.uiState.get(), { label: "app" });

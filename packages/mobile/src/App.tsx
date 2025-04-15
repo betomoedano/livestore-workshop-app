@@ -1,3 +1,4 @@
+import { nanoid } from "@livestore/livestore";
 import { makePersistedAdapter } from "@livestore/adapter-expo";
 import { LiveStoreProvider } from "@livestore/react";
 import { StatusBar } from "expo-status-bar";
@@ -14,7 +15,7 @@ import { Filters } from "./components/Filters.tsx";
 import { ListTodos } from "./components/ListTodos.tsx";
 import { Meta } from "./components/Meta.tsx";
 import { NewTodo } from "./components/NewTodo.tsx";
-import { mutations, schema, tables } from "@workshop/shared/schema";
+import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
 
 // Hardcoded token for testing - valid for 24 hours
@@ -48,11 +49,14 @@ export const App = () => {
           );
         }}
         boot={(store) => {
-          // if (store.query(tables.todos.query.count()) === 0) {
-          //   store.commit(
-          //     mutations.addTodo({ id: nanoid(), text: "Make coffee" })
-          //   );
-          // }
+          if (store.query(tables.todos.count()) === 0) {
+            store.commit(
+              events.todoCreated({
+                id: nanoid(),
+                text: "🎥 Subscribe to @codewithbeto",
+              })
+            );
+          }
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}

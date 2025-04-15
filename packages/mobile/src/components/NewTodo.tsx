@@ -12,27 +12,28 @@ import {
 } from "react-native";
 
 import { app$ } from "@workshop/shared/queries";
-import { mutations } from "@workshop/shared/schema";
+import { events } from "@workshop/shared/schema";
 
 export const NewTodo: React.FC = () => {
   const { store } = useStore();
   const { newTodoText } = useQuery(app$);
 
   const updateNewTodoText = (text: string) =>
-    store.commit(mutations.updateNewTodoText({ text }));
+    store.commit(events.uiStateSet({ newTodoText: text }));
   const addTodo = () =>
     store.commit(
-      mutations.addTodo({ id: new Date().toISOString(), text: newTodoText }),
-      mutations.updateNewTodoText({ text: "" })
+      events.todoCreated({ id: new Date().toISOString(), text: newTodoText }),
+      events.uiStateSet({ newTodoText: "" })
     );
   const addRandom50 = () => {
     const todos = Array.from({ length: 50 }, (_, i) => ({
       id: nanoid(),
       text: `Todo ${i}`,
     }));
-    store.commit(...todos.map((todo) => mutations.addTodo(todo)));
+    store.commit(...todos.map((todo) => events.todoCreated(todo)));
   };
-  const reset = () => store.commit(mutations.clearAll({ deleted: Date.now() }));
+  const reset = () =>
+    store.commit(events.todoClearedCompleted({ deletedAt: new Date() }));
 
   const inputRef = React.useRef<TextInput>(null);
 

@@ -2,7 +2,7 @@ import { useQuery, useStore } from "@livestore/react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { app$ } from "@workshop/shared/queries";
-import { mutations } from "@workshop/shared/schema";
+import { events } from "@workshop/shared/schema";
 import type { Filter } from "@workshop/shared/types";
 
 export const Filters: React.FC = () => {
@@ -10,7 +10,7 @@ export const Filters: React.FC = () => {
   const { filter } = useQuery(app$);
 
   const setFilter = (filter: Filter) =>
-    store.commit(mutations.setFilter({ filter }));
+    store.commit(events.uiStateSet({ filter }));
 
   return (
     <View style={styles.container}>

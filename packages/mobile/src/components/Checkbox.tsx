@@ -3,7 +3,7 @@ import { useStore } from "@livestore/react";
 import * as React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { mutations } from "@workshop/shared/schema";
+import { events } from "@workshop/shared/schema";
 
 export const Checkbox: React.FC<{
   id: string;
@@ -14,8 +14,8 @@ export const Checkbox: React.FC<{
   const handleCheckbox = () =>
     store.commit(
       isCompleted
-        ? mutations.uncompleteTodo({ id })
-        : mutations.completeTodo({ id })
+        ? events.todoUncompleted({ id })
+        : events.todoCompleted({ id })
     );
 
   return (

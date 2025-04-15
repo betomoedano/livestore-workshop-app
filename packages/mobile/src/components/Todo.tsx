@@ -4,14 +4,14 @@ import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import type { Todo as ITodo } from "@workshop/shared/schema";
-import { mutations } from "@workshop/shared/schema";
+import { events } from "@workshop/shared/schema";
 import { Checkbox } from "./Checkbox.tsx";
 
 export const Todo: React.FC<ITodo> = ({ id, text, completed }) => {
   const { store } = useStore();
 
   const handleDeleteTodo = () =>
-    store.commit(mutations.deleteTodo({ id, deleted: Date.now() }));
+    store.commit(events.todoDeleted({ id, deletedAt: new Date() }));
 
   return (
     <View style={styles.container}>

@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { tables } from "@workshop/shared/schema";
 
 const incompleteCount$ = queryDb(
-  tables.todos.query.count().where({ deleted: null, completed: false }),
+  tables.todos.count().where({ deletedAt: null, completed: false }),
   {
     label: "incompleteCount",
   }
