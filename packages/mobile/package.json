@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/metro-runtime": "5.0.1-canary-20250408-7f0ab53",
+    "@expo/metro-runtime": "5.0.2",
     "@expo/vector-icons": "14.1.0",
     "@livestore/adapter-expo": "0.3.0-dev.31",
     "@livestore/devtools-expo": "0.3.0-dev.31",
@@ -18,26 +18,29 @@
     "@livestore/react": "0.3.0-dev.31",
     "@livestore/sync-cf": "0.3.0-dev.31",
     "@livestore/utils": "0.3.0-dev.31",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.200.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.200.0",
+    "@opentelemetry/sdk-trace-node": "^2.0.0",
     "@workshop/shared": "workspace:*",
-    "babel-preset-expo": "12.0.0-preview.6",
-    "expo": "53.0.0-canary-20250408-7f0ab53",
-    "expo-asset": "11.1.1-canary-20250408-7f0ab53",
-    "expo-crypto": "14.1.1-canary-20250408-7f0ab53",
-    "expo-sqlite": "15.2.1-canary-20250408-7f0ab53",
-    "expo-status-bar": "2.1.1-canary-20250408-7f0ab53",
+    "babel-preset-expo": "13.0.0",
+    "expo": "53.0.0-preview.7",
+    "expo-asset": "11.1.2",
+    "expo-crypto": "14.1.2",
+    "expo-sqlite": "15.2.5",
+    "expo-status-bar": "2.2.1",
     "jose": "^6.0.10",
     "react": "19.0.0",
-    "react-native": "0.79.0-rc.4",
+    "react-native": "0.79.0",
     "react-native-web": "~0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/plugin-syntax-import-attributes": "^7.26.0",
     "@babel/runtime": "^7.26.0",
-    "@types/react": "~18.3.12",
+    "@types/react": "~19.0.14",
     "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "eas-cli": "10.2.2",
-    "typescript": "5.5.4"
+    "typescript": "5.8.3"
   },
   "private": true
 }
