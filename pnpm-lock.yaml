@@ -58,6 +58,9 @@ importers:
       expo-status-bar:
         specifier: 2.1.1-canary-20250408-7f0ab53
         version: 2.1.1-canary-20250408-7f0ab53(react-native@0.79.0-rc.4(@babel/core@7.26.10)(@types/react@18.3.18)(react@19.0.0))(react@19.0.0)
+      jose:
+        specifier: ^6.0.10
+        version: 6.0.10
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -105,6 +108,9 @@ importers:
       '@livestore/sync-cf':
         specifier: 0.3.0-dev.24
         version: 0.3.0-dev.24(uiilqls5r5dpta2beq3w5uca4y)
+      jose:
+        specifier: ^6.0.10
+        version: 6.0.10
     devDependencies:
       typescript:
         specifier: ^5.8.2
@@ -3878,6 +3884,9 @@ packages:
 
   join-component@1.1.0:
     resolution: {integrity: sha512-bF7vcQxbODoGK1imE2P9GS9aw4zD0Sd+Hni68IMZLj7zRnquH7dXUmMw9hDI5S/Jzt7q+IyTXN0rSg2GI0IKhQ==}
+
+  jose@6.0.10:
+    resolution: {integrity: sha512-skIAxZqcMkOrSwjJvplIPYrlXGpxTPnro2/QWTDCxAdWQrSTV5/KqspMWmi5WAx5+ULswASJiZ0a+1B/Lxt9cw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -10423,6 +10432,8 @@ snapshots:
       '@sideway/pinpoint': 2.0.0
 
   join-component@1.1.0: {}
+
+  jose@6.0.10: {}
 
   js-tokens@4.0.0: {}
 

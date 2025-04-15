@@ -25,6 +25,7 @@
     "expo-crypto": "14.1.1-canary-20250408-7f0ab53",
     "expo-sqlite": "15.2.1-canary-20250408-7f0ab53",
     "expo-status-bar": "2.1.1-canary-20250408-7f0ab53",
+    "jose": "^6.0.10",
     "react": "19.0.0",
     "react-native": "0.79.0-rc.4",
     "react-native-web": "~0.20.0"

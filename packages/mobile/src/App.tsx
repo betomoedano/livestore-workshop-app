@@ -17,6 +17,10 @@ import { NewTodo } from "./components/NewTodo.tsx";
 import { mutations, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
 
+// Hardcoded token for testing - valid for 24 hours
+const TEST_TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E";
+
 const syncUrl = __DEV__
   ? process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_LOCAL
   : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
@@ -52,7 +56,9 @@ export const App = () => {
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}
-        syncPayload={{ authToken: "insecure-token-change-me" }}
+        syncPayload={{
+          authToken: TEST_TOKEN,
+        }}
       >
         <InnerApp />
       </LiveStoreProvider>
