@@ -1,5 +1,5 @@
 import { makeWorker } from "@livestore/adapter-web/worker";
-import { makeWsSync } from "@livestore/sync-cf";
+import { makeCfSync } from "@livestore/sync-cf";
 
 import { schema } from "@workshop/shared/schema";
 
@@ -11,7 +11,7 @@ const url =
 makeWorker({
   schema,
   sync: {
-    makeBackend: ({ storeId }) => makeWsSync({ url, storeId }),
+    backend: makeCfSync({ url }),
     // initialSyncOptions: { _tag: "Blocking", timeout: 5000 },
   },
 });

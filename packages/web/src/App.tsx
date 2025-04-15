@@ -1,15 +1,15 @@
 import "./App.css";
 import { queryDb } from "@livestore/livestore";
 import { app$ } from "@workshop/shared/queries";
-import { mutations, tables } from "@workshop/shared/schema";
+import { events, tables } from "@workshop/shared/schema";
 import { useQuery, useStore } from "@livestore/react";
 
 const visibleTodos$ = queryDb(
   (get) => {
     const { filter } = get(app$);
-    return tables.todos.query.where({
-      deleted: null,
-      // completed: filter === "all" ? undefined : filter === "completed",
+    return tables.todos.where({
+      deletedAt: null,
+      completed: filter === "all" ? undefined : filter === "completed",
     });
   },
   { label: "visibleTodos" }
@@ -32,8 +32,8 @@ function App() {
               onChange={() =>
                 store.commit(
                   todo.completed
-                    ? mutations.uncompleteTodo({ id: todo.id })
-                    : mutations.completeTodo({ id: todo.id })
+                    ? events.todoUncompleted({ id: todo.id })
+                    : events.todoCompleted({ id: todo.id })
                 )
               }
               style={{
