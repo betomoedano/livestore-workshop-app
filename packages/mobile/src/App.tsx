@@ -17,12 +17,16 @@ import { NewTodo } from "./components/NewTodo.tsx";
 import { mutations, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
 
+// Hardcoded token for testing - valid for 24 hours
+const TEST_TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E";
+
 const syncUrl = __DEV__
   ? process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_LOCAL
   : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
 
 const adapter = makePersistedAdapter({
-  sync: { backend: makeCfSync({ url: syncUrl }), },
+  sync: { backend: makeCfSync({ url: syncUrl }) },
 });
 
 export const App = () => {
@@ -32,7 +36,7 @@ export const App = () => {
     <View style={styles.container}>
       <LiveStoreProvider
         schema={schema}
-        storeId="hello2" // DB for each id
+        storeId="a" // DB for each id
         renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
         renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
         renderShutdown={() => {
@@ -52,7 +56,9 @@ export const App = () => {
         }}
         adapter={adapter}
         batchUpdates={batchUpdates}
-        syncPayload={{ authToken: 'insecure-token-change-me' }}
+        syncPayload={{
+          authToken: TEST_TOKEN,
+        }}
       >
         <InnerApp />
       </LiveStoreProvider>

@@ -8,6 +8,18 @@ config.resolver.unstable_enableSymlinks = true;
 config.resolver.unstable_enablePackageExports = true;
 config.resolver.unstable_conditionNames = ["require", "default"];
 
+// Add wasm asset support
+config.resolver.assetExts.push("wasm");
+
+// Add COEP and COOP headers to support SharedArrayBuffer
+config.server.enhanceMiddleware = (middleware) => {
+  return (req, res, next) => {
+    res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+    middleware(req, res, next);
+  };
+};
+
 // Add LiveStore Devtools middleware only in a local development environment
 if (!process.env.CI && process.stdout.isTTY) {
   addLiveStoreDevtoolsMiddleware(config, {
