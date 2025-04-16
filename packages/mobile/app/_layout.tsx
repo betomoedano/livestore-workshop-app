@@ -9,7 +9,7 @@ import {
   unstable_batchedUpdates as batchUpdates,
   View,
 } from "react-native";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 
 import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
@@ -59,9 +59,7 @@ export default function RootLayout() {
         authToken: TEST_TOKEN,
       }}
     >
-      <Stack>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
-      </Stack>
+      <Slot />
     </LiveStoreProvider>
   );
 }
