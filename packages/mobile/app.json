@@ -7,6 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme": "livestore-expo",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -33,6 +34,6 @@
         "projectId": "a9d0eb9f-acf5-4cf1-ac11-bde0cc766e6f"
       }
     },
-    "plugins": ["expo-asset", "expo-sqlite"]
+    "plugins": ["expo-asset", "expo-sqlite", "expo-router"]
   }
 }
