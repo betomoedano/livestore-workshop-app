@@ -11,12 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@livestore/adapter-web": "0.3.0-dev.31",
-    "@livestore/devtools-vite": "0.3.0-dev.31",
-    "@livestore/livestore": "0.3.0-dev.31",
-    "@livestore/react": "0.3.0-dev.31",
-    "@livestore/sync-cf": "0.3.0-dev.31",
-    "@livestore/utils": "0.3.0-dev.31",
+    "@livestore/adapter-web": "0.3.0-dev.32",
+    "@livestore/devtools-vite": "0.3.0-dev.32",
+    "@livestore/livestore": "0.3.0-dev.32",
+    "@livestore/react": "0.3.0-dev.32",
+    "@livestore/sync-cf": "0.3.0-dev.32",
+    "@livestore/utils": "0.3.0-dev.32",
     "@livestore/wa-sqlite": "1.0.5-dev.1",
     "@workshop/shared": "workspace:*",
     "react": "19.0.0",

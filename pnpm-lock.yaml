@@ -17,35 +17,26 @@ importers:
         specifier: 14.1.0
         version: 14.1.0(expo-font@13.1.2(expo@53.0.0-preview.7(@babel/core@7.26.10)(@expo/metro-runtime@5.0.2(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0)))(graphql@16.8.1)(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       '@livestore/adapter-expo':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(cdabyn7onakom25sb4z2dylab4)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(cdabyn7onakom25sb4z2dylab4)
       '@livestore/devtools-expo':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(mrmsxp5eah4clzj72wmi3rkugq)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(mrmsxp5eah4clzj72wmi3rkugq)
       '@livestore/livestore':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
       '@livestore/peer-deps':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(@effect/cluster@0.29.17(@effect/platform@0.80.8(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@opentelemetry/sdk-metrics@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.32.0)(vitest@3.1.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1))
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(@effect/cluster@0.29.17(@effect/platform@0.80.8(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@opentelemetry/sdk-trace-node@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.32.0)(vitest@3.1.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1))
       '@livestore/react':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(lv7zgs3xd2gkmb2agbjmscskxm)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(lv7zgs3xd2gkmb2agbjmscskxm)
       '@livestore/sync-cf':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@livestore/utils':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@opentelemetry/exporter-metrics-otlp-http':
-        specifier: ^0.200.0
-        version: 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/exporter-trace-otlp-http':
-        specifier: ^0.200.0
-        version: 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/sdk-trace-node':
-        specifier: ^2.0.0
-        version: 2.0.0(@opentelemetry/api@1.9.0)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@workshop/shared':
         specifier: workspace:*
         version: link:../shared
@@ -105,8 +96,8 @@ importers:
   packages/shared:
     dependencies:
       '@livestore/livestore':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
     devDependencies:
       typescript:
         specifier: ^5.0.0
@@ -115,8 +106,8 @@ importers:
   packages/sync-backend:
     dependencies:
       '@livestore/sync-cf':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       jose:
         specifier: ^6.0.10
         version: 6.0.10
@@ -131,23 +122,23 @@ importers:
   packages/web:
     dependencies:
       '@livestore/adapter-web':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
       '@livestore/devtools-vite':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32
       '@livestore/livestore':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
       '@livestore/react':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(lv7zgs3xd2gkmb2agbjmscskxm)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(lv7zgs3xd2gkmb2agbjmscskxm)
       '@livestore/sync-cf':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@livestore/utils':
-        specifier: 0.3.0-dev.31
-        version: 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+        specifier: 0.3.0-dev.32
+        version: 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@livestore/wa-sqlite':
         specifier: 1.0.5-dev.1
         version: 1.0.5-dev.1
@@ -1222,7 +1213,7 @@ packages:
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {node: '>=0.10.0'}
+    engines: {'0': node >=0.10.0}
 
   '@expo/cli@0.24.2':
     resolution: {integrity: sha512-CW/mLfLMk7FRBIka+4W+3dmv93uAQ3MGe4e7iWbmuW/Pm6F9V8ueoPZ11cUGbEQX7MGJfyb4jZQtgYecoPX8yw==}
@@ -1591,59 +1582,59 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@livestore/adapter-expo@0.3.0-dev.31':
-    resolution: {integrity: sha512-vKrfISB0q/q4BPAjyb64PVgXcvpO5/rlSbeqdnMbE/vTr+3AEw4kbnkaVKm6AYIN6tWauqTchrWs22QHkdM1Ow==}
+  '@livestore/adapter-expo@0.3.0-dev.32':
+    resolution: {integrity: sha512-FVt2k67dLNX66C65VFF0jYZ0llBL6EnabS7Sflc0BS5oRpzHzk4J4QjxHbd5RlUcLfCZ8I5w+Z2tad/EQRsghQ==}
     peerDependencies:
       expo-file-system: '*'
       expo-sqlite: ~15.2.4
 
-  '@livestore/adapter-node@0.3.0-dev.31':
-    resolution: {integrity: sha512-TUxLZkOnV+jnnDLz9Eo7k8RfjkaPoj8pDTmEVSE3g95qEluHEUHwr0jcGhrL0ni/Xy6UUTW0RNqEH9oGqi/s1w==}
+  '@livestore/adapter-node@0.3.0-dev.32':
+    resolution: {integrity: sha512-FRHWswHzye69O6dr+BrrhIsFmQoG69KdDTIzDARPPWuaXmgIWnr79XTOt83i3MJRK0NwYnUw3FEulKHvzhhD5g==}
 
-  '@livestore/adapter-web@0.3.0-dev.31':
-    resolution: {integrity: sha512-PdxuZ9JBKckZqpAPHCabzaSqdo0lZHiH9I9Tx3zpkuITewaLs7Tza3AYZGUgvdd/7fip9wRVkeOuxauuvW7R1Q==}
+  '@livestore/adapter-web@0.3.0-dev.32':
+    resolution: {integrity: sha512-xV3GD4ryPS++3Ouo/2RIyDPHRn8JGwiHPkxnF2u9Bvb6W1M2s3LkC24FmmLSzAzagpGGq/SrejEm7AYA4izyBw==}
 
-  '@livestore/common@0.3.0-dev.31':
-    resolution: {integrity: sha512-DkRb5LUMBptpBNVsouvWFCApg3/W1gXHLgeZfOwhCm3DHCGnTIkS/3H8oDnlPbEOKB267cQz8C+fVDWaAwXonA==}
+  '@livestore/common@0.3.0-dev.32':
+    resolution: {integrity: sha512-RPBnxQEt4kM5x+XfgHfqSnpZx3sY8iqapmBu7GXR8b/bv76WsVUL+2kHbd8zmht2to+H0VCK2HJFEFJakoeJmw==}
 
-  '@livestore/devtools-expo-common@0.3.0-dev.31':
-    resolution: {integrity: sha512-rBLeGopBc6n1JxJldWTWjwHiRIaHVW0hBsZSs/JZkohw2NqUjpijlPr/vwSOMrh1JsOoOnUuhDryMOeZJklxjw==}
+  '@livestore/devtools-expo-common@0.3.0-dev.32':
+    resolution: {integrity: sha512-0sdU/5bADU4wLJRON9gQBe2PWtgWnCHBqmVvdnN5vSxxQpa7P+gKe6Guo00V/egkOCy6m/gklrix6NXiTtgmrg==}
     peerDependencies:
       expo: ^53.0.0-preview.5
 
-  '@livestore/devtools-expo@0.3.0-dev.31':
-    resolution: {integrity: sha512-t3QIZv3yvqaFzDdF5X7vEZ1Htrp4rJu9Xcft0YKKeCCW2aZaOEnUdFyXGBix6Mhh+UtUCI70agQA5ukAL7j6bA==}
+  '@livestore/devtools-expo@0.3.0-dev.32':
+    resolution: {integrity: sha512-XPUDLj+kws744ZJkMbtxquum89fOMgm97nGNkK/PC7wyFbpwoS4ai6UHqQ4JdL5xUYO1oNW56+y7sS9dTh7KNg==}
     peerDependencies:
       expo: ^53.0.0-preview.5
 
-  '@livestore/devtools-node-common@0.3.0-dev.31':
-    resolution: {integrity: sha512-J0eSb9u68zOrXV6M94V87z4v0NLYKljf0Ve+EtkU7jiwy97rtevtXOg60Hq4ht8/FRk1nDwQede4/UOg9njUzQ==}
+  '@livestore/devtools-node-common@0.3.0-dev.32':
+    resolution: {integrity: sha512-pDh2mrKz/vRu7FyEs5z09DHgXCipStZlhVs7Tm6DDOBoG9Rzoc5fqbg1QD765p2a31B2TyzY4kJ8hOsdvv7orw==}
 
-  '@livestore/devtools-vite@0.3.0-dev.31':
-    resolution: {integrity: sha512-shepnfV558t+RCSFzgIvrPhyZVynO7tsRE+VJt9LluDTks2R5y7WOtdbdwTs4XW06YLpvi9+cSLsO59cc/zZzQ==}
+  '@livestore/devtools-vite@0.3.0-dev.32':
+    resolution: {integrity: sha512-AonCZrO1+4wG5WXaCOKrzxA4SLToeDBqFxNYKwReb1CdbZuWZd/Tc1x0b31mqccouf/y0pd5SoxerktB8ybAmQ==}
 
-  '@livestore/devtools-web-common@0.3.0-dev.31':
-    resolution: {integrity: sha512-ebvDz2YfDKl1Giq2yvpZCZ/h0UY0inl/ogLI3AhJ/BOQNVFarzsgZbRyNi1FIRNZi2HEh1JgUpojKUxPthfdHw==}
+  '@livestore/devtools-web-common@0.3.0-dev.32':
+    resolution: {integrity: sha512-p83OXXesQpZPxRVO3tp77Y/0V0DCvX2YtQRFuBE3DAgWny9s9VNKlwqJujft+qT0XtjjTDAFxyHYmijvoN883Q==}
 
-  '@livestore/livestore@0.3.0-dev.31':
-    resolution: {integrity: sha512-+F26eUQslWC01NwwZmEbmgxDe1d2SV+E/JMqsKncXBvcx+Et5B6pBx3f4M2H2RGFOkMMQofYUKIB4/SjyDuKxw==}
+  '@livestore/livestore@0.3.0-dev.32':
+    resolution: {integrity: sha512-A4l/1jNwm8TjnxcCJxfkTFIPt1QtuN8Fi+wqX6yZxd689CrgIW0o2gp8ldm3T8LHzcjS435NF3XhwxJ01vWyCQ==}
 
-  '@livestore/peer-deps@0.3.0-dev.31':
-    resolution: {integrity: sha512-WZnQ/t+mrx4cvJ6BsrUeYszQhWhqd+reB2wQBQ6FuelcNwn4w//ALSsEYccA1xR5OQefANKL+xOWch9ppEKgzg==}
+  '@livestore/peer-deps@0.3.0-dev.32':
+    resolution: {integrity: sha512-S91C7YTHKHREcPikuIq+3rzdauqPzkH+ThFk+4NAEZa+mViVMcPbD1I8cH/77o5SRyj6hGBu93+YgNFx9949RQ==}
 
-  '@livestore/react@0.3.0-dev.31':
-    resolution: {integrity: sha512-g1DWVHeP8a+LYibw5FkAAgvIAgwQDqJJ0CO6/+aJL1UvNiqAEIuSIeT7MsYzPeyr+T0xpUpQ3Vba6Pne88liMg==}
+  '@livestore/react@0.3.0-dev.32':
+    resolution: {integrity: sha512-34qP4O1gwl13hGVK/FhpxnUulGe4hO6M9pJIRTts89I2ZYTnGpH5VbNvBPaUo0RLIC9LpJXQrlDDPHYE2nVa+g==}
     peerDependencies:
       react: ~19.0.0
 
-  '@livestore/sqlite-wasm@0.3.0-dev.31':
-    resolution: {integrity: sha512-xCKZfExsElUBNDGddsLOHu4SrGgf/XXV+Wp5DaUUm97E6poWU1m/koERQdKRI5jlJjSSIbh6lY4lWFAVfP4JFw==}
+  '@livestore/sqlite-wasm@0.3.0-dev.32':
+    resolution: {integrity: sha512-QZwCnFITMe05eZ1+R61dqKHctd3jbSK6nBBW5hlGmxtTjfkgz8vihfim7S40KG9dOonds8U83+BpmFJUbom8nw==}
 
-  '@livestore/sync-cf@0.3.0-dev.31':
-    resolution: {integrity: sha512-TVRhbORs/84FrNSKgvkAA7qLI+ICISme1xFO3DX4imZj3joLY5AcZtDZ0/dxc7IcwPoaO+XgCLdqpPdeXx6Njg==}
+  '@livestore/sync-cf@0.3.0-dev.32':
+    resolution: {integrity: sha512-3sAOveLfxewZ2RNEsc9yzFW4TJSJd3/+6bVielGabSJACG5/wFw2lTZZbo1AdXHOi510aIiESBCWCkKtr23gCw==}
 
-  '@livestore/utils@0.3.0-dev.31':
-    resolution: {integrity: sha512-15kyQZG/GiwF2ny80jyVsx9lAAwG5Y4oFAww4hH3FJg7snfNV0/pEgkvZfQ84HwGgaobXKcNwRIgJIo6pSt6nA==}
+  '@livestore/utils@0.3.0-dev.32':
+    resolution: {integrity: sha512-rduPmQ0QL61M5zYCyioGSoLFNrgg4eGWbGI1RhvFgj9qhMpy5lwSDfFoJCJm2H7gLhlb5UgBK4/9fHHi63DaDQ==}
     peerDependencies:
       '@effect/cli': ~0.59.8
       '@effect/cluster': ~0.29.17
@@ -1668,8 +1659,8 @@ packages:
   '@livestore/wa-sqlite@1.0.5-dev.2':
     resolution: {integrity: sha512-i7tKFEp0m3+4tGLV9Z5eAr/3RZPuNOyuf4NaQ/ygF2KwzlHc3TnqouPuE2sMH06r3soXIilWYND/x0eT8x6D6Q==}
 
-  '@livestore/webmesh@0.3.0-dev.31':
-    resolution: {integrity: sha512-TDFPAhU9nO5Zdq4nd7k7UpJ+FoWOJVgwo/vOHQoPOfI4odIXMCHY4ptrgzH0yFcd1mXXPhF25Uh8Fi9pebKLPA==}
+  '@livestore/webmesh@0.3.0-dev.32':
+    resolution: {integrity: sha512-5AHvsKezOVQ6UNmxi//jCwYZ2lspcWAzhFnHJtbJI3Lw2z8oZ4iWIL8dq7754gTeySSx3vExaFEs3fPIN11H2A==}
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
     resolution: {integrity: sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw==}
@@ -7099,12 +7090,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@livestore/adapter-expo@0.3.0-dev.31(cdabyn7onakom25sb4z2dylab4)':
+  '@livestore/adapter-expo@0.3.0-dev.32(cdabyn7onakom25sb4z2dylab4)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/devtools-expo-common': 0.3.0-dev.31(olxgebfdkqp7fbuf2mo3mlcope)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/devtools-expo-common': 0.3.0-dev.32(olxgebfdkqp7fbuf2mo3mlcope)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
       expo-file-system: 18.1.4(expo@53.0.0-preview.7(@babel/core@7.26.10)(@expo/metro-runtime@5.0.2(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0)))(graphql@16.8.1)(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))
       expo-sqlite: 15.2.5(expo@53.0.0-preview.7(@babel/core@7.26.10)(@expo/metro-runtime@5.0.2(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0)))(graphql@16.8.1)(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -7126,15 +7117,15 @@ snapshots:
       - effect
       - expo
 
-  '@livestore/adapter-node@0.3.0-dev.31(4k6i2kssoxxh2tremuq4yfxbte)':
+  '@livestore/adapter-node@0.3.0-dev.32(4k6i2kssoxxh2tremuq4yfxbte)':
     dependencies:
-      '@livestore/adapter-web': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/devtools-node-common': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/devtools-vite': 0.3.0-dev.31
-      '@livestore/sqlite-wasm': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/adapter-web': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/devtools-node-common': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/devtools-vite': 0.3.0-dev.32
+      '@livestore/sqlite-wasm': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/otlp-exporter-base': 0.200.0(@opentelemetry/api@1.9.0)
       vite: 6.2.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1)
@@ -7169,13 +7160,13 @@ snapshots:
       - utf-8-validate
       - yaml
 
-  '@livestore/adapter-web@0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)':
+  '@livestore/adapter-web@0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/devtools-web-common': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/sqlite-wasm': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/devtools-web-common': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/sqlite-wasm': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
     transitivePeerDependencies:
       - '@effect/cli'
@@ -7194,9 +7185,9 @@ snapshots:
       - '@effect/vitest'
       - effect
 
-  '@livestore/common@0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)':
+  '@livestore/common@0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)':
     dependencies:
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
       graphology: 0.26.0-alpha1(graphology-types@0.24.8)
       graphology-dag: 0.4.1(graphology-types@0.24.8)
@@ -7218,11 +7209,11 @@ snapshots:
       - '@effect/vitest'
       - effect
 
-  '@livestore/devtools-expo-common@0.3.0-dev.31(olxgebfdkqp7fbuf2mo3mlcope)':
+  '@livestore/devtools-expo-common@0.3.0-dev.32(olxgebfdkqp7fbuf2mo3mlcope)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       expo: 53.0.0-preview.7(@babel/core@7.26.10)(@expo/metro-runtime@5.0.2(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0)))(graphql@16.8.1)(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - '@effect/cli'
@@ -7242,10 +7233,10 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/devtools-expo@0.3.0-dev.31(mrmsxp5eah4clzj72wmi3rkugq)':
+  '@livestore/devtools-expo@0.3.0-dev.32(mrmsxp5eah4clzj72wmi3rkugq)':
     dependencies:
-      '@livestore/adapter-node': 0.3.0-dev.31(4k6i2kssoxxh2tremuq4yfxbte)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/adapter-node': 0.3.0-dev.32(4k6i2kssoxxh2tremuq4yfxbte)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       expo: 53.0.0-preview.7(@babel/core@7.26.10)(@expo/metro-runtime@5.0.2(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0)))(graphql@16.8.1)(react-native@0.79.0(@babel/core@7.26.10)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - '@effect/cli'
@@ -7278,11 +7269,11 @@ snapshots:
       - utf-8-validate
       - yaml
 
-  '@livestore/devtools-node-common@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/devtools-node-common@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
     transitivePeerDependencies:
       - '@effect/cli'
       - '@effect/cluster'
@@ -7301,13 +7292,13 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/devtools-vite@0.3.0-dev.31': {}
+  '@livestore/devtools-vite@0.3.0-dev.32': {}
 
-  '@livestore/devtools-web-common@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/devtools-web-common@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
-      '@livestore/webmesh': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/webmesh': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
     transitivePeerDependencies:
       - '@effect/cli'
       - '@effect/cluster'
@@ -7326,10 +7317,10 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/livestore@0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)':
+  '@livestore/livestore@0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
     transitivePeerDependencies:
       - '@effect/cli'
@@ -7348,7 +7339,7 @@ snapshots:
       - '@effect/vitest'
       - effect
 
-  '@livestore/peer-deps@0.3.0-dev.31(@effect/cluster@0.29.17(@effect/platform@0.80.8(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@opentelemetry/sdk-metrics@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.32.0)(vitest@3.1.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1))':
+  '@livestore/peer-deps@0.3.0-dev.32(@effect/cluster@0.29.17(@effect/platform@0.80.8(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@opentelemetry/sdk-trace-node@2.0.0(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.32.0)(vitest@3.1.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1))':
     dependencies:
       '@effect/cli': 0.59.8(@effect/platform@0.80.8(effect@3.14.8))(@effect/printer-ansi@0.42.8(@effect/typeclass@0.33.8(effect@3.14.8))(effect@3.14.8))(@effect/printer@0.42.8(@effect/typeclass@0.33.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8)
       '@effect/experimental': 0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8)
@@ -7362,15 +7353,17 @@ snapshots:
       '@effect/typeclass': 0.33.8(effect@3.14.8)
       '@effect/vitest': 0.20.8(effect@3.14.8)(vitest@3.1.1(@types/node@22.14.1)(lightningcss@1.27.0)(terser@5.39.0)(yaml@2.7.1))
       '@opentelemetry/api': 1.9.0
+      '@opentelemetry/exporter-metrics-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/exporter-trace-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 2.0.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-metrics': 2.0.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-trace-base': 2.0.0(@opentelemetry/api@1.9.0)
       effect: 3.14.8
     transitivePeerDependencies:
       - '@effect/cluster'
       - '@effect/rpc'
       - '@effect/sql'
       - '@opentelemetry/sdk-logs'
-      - '@opentelemetry/sdk-metrics'
-      - '@opentelemetry/sdk-trace-base'
       - '@opentelemetry/sdk-trace-node'
       - '@opentelemetry/sdk-trace-web'
       - '@opentelemetry/semantic-conventions'
@@ -7380,11 +7373,11 @@ snapshots:
       - utf-8-validate
       - vitest
 
-  '@livestore/react@0.3.0-dev.31(lv7zgs3xd2gkmb2agbjmscskxm)':
+  '@livestore/react@0.3.0-dev.32(lv7zgs3xd2gkmb2agbjmscskxm)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/livestore': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/livestore': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@opentelemetry/api': 1.9.0
       react: 19.0.0
     transitivePeerDependencies:
@@ -7404,10 +7397,10 @@ snapshots:
       - '@effect/vitest'
       - effect
 
-  '@livestore/sqlite-wasm@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/sqlite-wasm@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
       '@livestore/wa-sqlite': 1.0.5-dev.2
     transitivePeerDependencies:
       - '@effect/cli'
@@ -7427,10 +7420,10 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/sync-cf@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/sync-cf@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
     transitivePeerDependencies:
       - '@effect/cli'
       - '@effect/cluster'
@@ -7449,7 +7442,7 @@ snapshots:
       - '@opentelemetry/api'
       - effect
 
-  '@livestore/utils@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/utils@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
       '@effect/cli': 0.59.8(@effect/platform@0.80.8(effect@3.14.8))(@effect/printer-ansi@0.42.8(@effect/typeclass@0.33.8(effect@3.14.8))(effect@3.14.8))(@effect/printer@0.42.8(@effect/typeclass@0.33.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8)
       '@effect/cluster': 0.29.17(@effect/platform@0.80.8(effect@3.14.8))(@effect/rpc@0.55.12(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/sql@0.33.8(@effect/experimental@0.44.8(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(@effect/platform@0.80.8(effect@3.14.8))(effect@3.14.8))(effect@3.14.8)
@@ -7476,10 +7469,10 @@ snapshots:
 
   '@livestore/wa-sqlite@1.0.5-dev.2': {}
 
-  '@livestore/webmesh@0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)':
+  '@livestore/webmesh@0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)':
     dependencies:
-      '@livestore/common': 0.3.0-dev.31(ck25gckbpkh6ltscml5u6j5z5i)
-      '@livestore/utils': 0.3.0-dev.31(eelvgm32mwqmxyp5yrk6sozzwi)
+      '@livestore/common': 0.3.0-dev.32(ck25gckbpkh6ltscml5u6j5z5i)
+      '@livestore/utils': 0.3.0-dev.32(eelvgm32mwqmxyp5yrk6sozzwi)
     transitivePeerDependencies:
       - '@effect/cli'
       - '@effect/cluster'
@@ -7620,6 +7613,7 @@ snapshots:
   '@opentelemetry/context-async-hooks@2.0.0(@opentelemetry/api@1.9.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
+    optional: true
 
   '@opentelemetry/core@2.0.0(@opentelemetry/api@1.9.0)':
     dependencies:
@@ -7693,6 +7687,7 @@ snapshots:
       '@opentelemetry/context-async-hooks': 2.0.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 2.0.0(@opentelemetry/api@1.9.0)
+    optional: true
 
   '@opentelemetry/semantic-conventions@1.32.0': {}
 
