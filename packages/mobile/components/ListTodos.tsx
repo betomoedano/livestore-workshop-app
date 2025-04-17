@@ -6,6 +6,8 @@ import { FlatList } from "react-native";
 import { app$ } from "@workshop/shared/queries";
 import { tables } from "@workshop/shared/schema";
 import { Todo } from "./Todo.tsx";
+import { useUserStore } from "../context/LiveStoreUser.tsx";
+import { userTables } from "@workshop/shared/user-schema.ts";
 
 const visibleTodos$ = queryDb(
   (get) => {
@@ -20,6 +22,9 @@ const visibleTodos$ = queryDb(
 
 export const ListTodos: React.FC = () => {
   const visibleTodos = useQuery(visibleTodos$);
+  const { store } = useUserStore();
+
+  console.log(store.query(userTables.notes.count()));
 
   return (
     <FlatList
