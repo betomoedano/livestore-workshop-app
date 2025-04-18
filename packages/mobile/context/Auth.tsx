@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 
 interface User {
   id: string;
@@ -8,6 +8,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -24,13 +25,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   forceUnauthenticated = false,
 }) => {
   // Determine the user state based on the flag
-  const user = forceUnauthenticated ? null : hardcodedUser;
+  const [user, setUser] = useState<User | null>(null);
 
-  return <AuthContext value={{ user }}>{children}</AuthContext>;
+  return <AuthContext value={{ user, setUser }}>{children}</AuthContext>;
 };
 
-const hardcodedUser: User = {
+export const hardcodedUser1: User = {
   id: "1",
   name: "Beto",
   email: "beto@expo.io",
+};
+
+export const hardcodedUser2: User = {
+  id: "2",
+  name: "Keith",
+  email: "keith@expo.io",
 };
