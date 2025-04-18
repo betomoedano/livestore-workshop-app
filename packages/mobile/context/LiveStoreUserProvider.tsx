@@ -1,6 +1,5 @@
 import * as React from "react";
 import { AuthContext } from "./Auth";
-import { Redirect } from "expo-router";
 import { makePersistedAdapter } from "@livestore/adapter-expo";
 import { makeCfSync } from "@livestore/sync-cf";
 import {
@@ -27,11 +26,6 @@ export const LiveStoreUserProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const auth = React.use(AuthContext);
   const user = auth?.user!; // if the user is not authenticated, user will be redirected to the auth page before this component is rendered
-
-  if (!user) {
-    console.log("no user", user);
-    // return <Redirect href="/(auth)/" />;
-  }
 
   const boot = React.useCallback(
     (store: Store) => {
