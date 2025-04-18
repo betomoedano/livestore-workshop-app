@@ -1,20 +1,28 @@
-import React, { use } from "react";
-import { Meta } from "../../components/Meta";
-import { NewTodo } from "../../components/NewTodo";
-import { Filters } from "../../components/Filters";
-import { ListTodos } from "../../components/ListTodos";
-import { AuthContext } from "../../context/Auth";
+import React from "react";
+import { useUserStore } from "../../context/stores";
+import { userTables } from "@workshop/shared/user-schema";
+import { Text, View } from "react-native";
 
 export default function Index() {
-  const user = use(AuthContext)?.user;
+  const store = useUserStore();
 
-  console.log("user", user);
+  const notes = store.query(userTables.notes.where({ deletedAt: null }));
+
+  console.log("notes", notes);
+
   return (
     <>
-      <NewTodo />
-      <Meta />
-      <ListTodos />
-      <Filters />
+      {notes.map((note) => (
+        <View key={note.id}>
+          <Text>id: {note.id}</Text>
+          <Text>title: {note.title}</Text>
+          <Text>content: {note.content.slice(0, 30)}...</Text>
+          <Text>ownerId: {note.ownerId}</Text>
+          <Text>accessLevel: {note.accessLevel}</Text>
+          <Text>createdAt: {note.createdAt.toISOString()}</Text>
+          <Text>updatedAt: {note.updatedAt.toISOString()}</Text>
+        </View>
+      ))}
     </>
   );
 }

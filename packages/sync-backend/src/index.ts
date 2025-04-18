@@ -15,7 +15,7 @@ export class WebSocketServer extends makeDurableObject({
 
 export default makeWorker({
   validatePayload: async (payload: any) => {
-    const { authToken } = payload;
+    const { authToken, user } = payload;
 
     if (!authToken) {
       console.log("no auth token provided");
@@ -30,7 +30,8 @@ export default makeWorker({
       // if (payload.exp && payload.exp < Date.now() / 1000) {
       //   throw new Error("Token expired");
       // }
-      console.log(authToken);
+
+      console.log("Received payload with user", user);
     } catch (error) {
       throw new Error("Invalid auth token");
     }

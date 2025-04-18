@@ -6,7 +6,7 @@ import { FlatList } from "react-native";
 import { app$ } from "@workshop/shared/queries";
 import { tables } from "@workshop/shared/schema";
 import { Todo } from "./Todo.tsx";
-import { useUserStore } from "../context/LiveStoreUser.tsx";
+import { useUserStore } from "../context/LiveStoreUserProvider.tsx";
 import { userTables } from "@workshop/shared/user-schema.ts";
 
 const visibleTodos$ = queryDb(
