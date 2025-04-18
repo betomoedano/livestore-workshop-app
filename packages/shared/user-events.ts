@@ -1,26 +1,14 @@
 import { Events, Schema } from "@livestore/livestore";
 
-export const noteCreated = Events.synced({
-  name: "v1.NoteCreated",
+export const userNoteCreated = Events.synced({
+  name: "v1.UserNoteCreated",
   schema: Schema.Struct({
-    ownerId: Schema.String,
     title: Schema.String,
-    content: Schema.String,
   }),
 });
 
-export const noteUpdated = Events.synced({
-  name: "v1.NoteUpdated",
-  schema: Schema.Struct({
-    id: Schema.String,
-    title: Schema.String,
-    content: Schema.String,
-    updatedAt: Schema.DateFromNumber,
-  }),
-});
-
-export const noteDeleted = Events.synced({
-  name: "v1.NoteDeleted",
+export const userNoteDeleted = Events.synced({
+  name: "v1.UserNoteDeleted",
   schema: Schema.Struct({
     id: Schema.String,
     deletedAt: Schema.DateFromNumber,

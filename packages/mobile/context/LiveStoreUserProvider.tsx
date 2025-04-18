@@ -31,11 +31,8 @@ export const LiveStoreUserProvider: React.FC<{ children: React.ReactNode }> = ({
     (store: Store) => {
       if (store.query(userTables.notes.count()) === 0) {
         store.commit(
-          userEvents.noteCreated({
-            ownerId: user.id,
+          userEvents.userNoteCreated({
             title: `👋 Welcome ${user.name}!`,
-            content:
-              "This is your personal notes app. Create a note to get started.",
           })
         );
       }

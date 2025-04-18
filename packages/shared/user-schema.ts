@@ -14,19 +14,10 @@ const notes = State.SQLite.table({
   name: "notes",
   columns: {
     id: State.SQLite.text({ primaryKey: true }),
-    ownerId: State.SQLite.text({ default: "" }),
+    title: State.SQLite.text({ default: "Untitled" }),
     accessLevel: State.SQLite.text({
       schema: AccessLevel,
       default: "viewer",
-    }),
-    title: State.SQLite.text({ default: "Untitled" }),
-    content: State.SQLite.text({ default: "" }),
-    createdBy: State.SQLite.text({ default: "" }),
-    createdAt: State.SQLite.integer({
-      schema: Schema.DateFromNumber,
-    }),
-    updatedAt: State.SQLite.integer({
-      schema: Schema.DateFromNumber,
     }),
     deletedAt: State.SQLite.integer({
       nullable: true,
@@ -57,21 +48,14 @@ export const userTables = { notes, uiState: userUiState };
 
 // Define materializers for the new Note events
 const userMaterializers = State.SQLite.materializers(userEvents, {
-  "v1.NoteCreated": ({ ownerId, title, content }) =>
+  "v1.UserNoteCreated": ({ title }) =>
     notes.insert({
       id: nanoid(),
-      ownerId,
       accessLevel: "owner",
       title,
-      content,
-      createdBy: ownerId,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     }),
-  "v1.NoteUpdated": ({ id, title, content, updatedAt }) =>
-    notes.update({ title, content, updatedAt }).where({ id }),
-  "v1.NoteDeleted": ({ id, deletedAt }) =>
-    notes.update({ deletedAt }).where({ id }),
+  "v1.UserNoteDeleted": ({ id }) =>
+    notes.update({ deletedAt: new Date() }).where({ id }),
 });
 
 // Update state definition to include the new materializers
