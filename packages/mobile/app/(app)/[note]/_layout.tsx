@@ -9,7 +9,7 @@ export default function NoteLayout() {
   return (
     <LiveStoreNoteProvider noteId={note as string}>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "Note" }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
     </LiveStoreNoteProvider>
   );

@@ -17,6 +17,7 @@ export default function AppLayout() {
     <LiveStoreUserProvider>
       <Stack>
         <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen name="[note]" options={{ title: "Note" }} />
       </Stack>
     </LiveStoreUserProvider>
   );

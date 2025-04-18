@@ -1,6 +1,6 @@
+import * as React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { useStore } from "@livestore/react";
-import * as React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { events } from "@workshop/shared/schema";
