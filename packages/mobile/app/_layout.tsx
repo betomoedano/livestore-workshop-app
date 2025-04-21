@@ -2,12 +2,14 @@ import "../polyfill.ts";
 import React from "react";
 import { nanoid } from "@livestore/livestore";
 import { makePersistedAdapter } from "@livestore/adapter-expo";
-import { LiveStoreProvider } from "@livestore/react";
+import { LiveStoreProvider, useStore } from "@livestore/react";
 import {
   Button,
   Text,
   unstable_batchedUpdates as batchUpdates,
   View,
+  Switch,
+  Pressable,
 } from "react-native";
 import { Stack } from "expo-router";
 
@@ -26,12 +28,14 @@ const adapter = makePersistedAdapter({
 
 export default function RootLayout() {
   const [, rerender] = React.useState({});
+  const [synced, setSynced] = React.useState(false);
 
   return (
     <LiveStoreProvider
       schema={schema}
-      storeId="a" // DB for each id
-      renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
+      storeId={synced ? "a" : undefined}
+      // renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
+      renderLoading={(_) => <></>}
       renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
       renderShutdown={() => {
         return (
@@ -69,7 +73,45 @@ export default function RootLayout() {
       }}
     >
       <Stack>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "Home",
+            headerRight: ({ tintColor }) => {
+              const { store } = useStore();
+              return (
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Pressable
+                    onPress={() =>
+                      store.commit(
+                        events.noteCreated({
+                          id: nanoid(),
+                          title: `new note ${Math.random().toFixed(3)}`,
+                          content: "new note",
+                          createdBy: "beto",
+                        })
+                      )
+                    }
+                  >
+                    <Text
+                      style={{
+                        color: tintColor,
+                        fontSize: 30,
+                        marginRight: 10,
+                      }}
+                    >
+                      +
+                    </Text>
+                  </Pressable>
+                  <Switch
+                    value={synced}
+                    onValueChange={() => setSynced(!synced)}
+                  />
+                </View>
+              );
+            },
+          }}
+        />
       </Stack>
     </LiveStoreProvider>
   );
