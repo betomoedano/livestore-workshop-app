@@ -34,3 +34,49 @@ export const todoEditingFinished = Events.synced({
   name: "v1.TodoEditingFinished",
   schema: Schema.Struct({ id: Schema.String, text: Schema.String }),
 });
+
+export const noteCreated = Events.synced({
+  name: "v1.NoteCreated",
+  schema: Schema.Struct({
+    id: Schema.String,
+    content: Schema.String,
+    createdBy: Schema.String,
+  }),
+});
+
+export const noteUpdated = Events.synced({
+  name: "v1.NoteUpdated",
+  schema: Schema.Struct({ id: Schema.String, content: Schema.String }),
+});
+
+export const noteReacted = Events.synced({
+  name: "v1.NoteReacted",
+  schema: Schema.Struct({
+    id: Schema.String,
+    noteId: Schema.String,
+    emoji: Schema.String,
+    type: Schema.String,
+    createdBy: Schema.String,
+  }),
+});
+
+export const noteDeleted = Events.synced({
+  name: "v1.NoteDeleted",
+  schema: Schema.Struct({ id: Schema.String, deletedAt: Schema.Date }),
+});
+
+export const noteReactionDeleted = Events.synced({
+  name: "v1.NoteReactionDeleted",
+  schema: Schema.Struct({ id: Schema.String, deletedAt: Schema.Date }),
+});
+
+export const noteReactionCreated = Events.synced({
+  name: "v1.NoteReactionCreated",
+  schema: Schema.Struct({
+    id: Schema.String,
+    noteId: Schema.String,
+    emoji: Schema.String,
+    type: Schema.String,
+    createdBy: Schema.String,
+  }),
+});

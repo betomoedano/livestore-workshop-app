@@ -18,9 +18,7 @@ import { makeCfSync } from "@livestore/sync-cf";
 const TEST_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E";
 
-const syncUrl = __DEV__
-  ? process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_LOCAL
-  : process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
+const syncUrl = process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
 
 const adapter = makePersistedAdapter({
   sync: { backend: makeCfSync({ url: syncUrl }) },

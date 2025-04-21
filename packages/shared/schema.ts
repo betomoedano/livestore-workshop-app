@@ -22,6 +22,53 @@ const todos = State.SQLite.table({
   },
 });
 
+const note = State.SQLite.table({
+  name: "note",
+  columns: {
+    id: State.SQLite.text({ primaryKey: true }),
+    content: State.SQLite.text({ default: "" }),
+    createdBy: State.SQLite.text({ default: "" }),
+    createdAt: State.SQLite.integer({
+      nullable: true,
+      schema: Schema.DateFromNumber,
+    }),
+    deletedAt: State.SQLite.integer({
+      nullable: true,
+      schema: Schema.DateFromNumber,
+    }),
+  },
+});
+
+const reaction = State.SQLite.table({
+  name: "reaction",
+  columns: {
+    id: State.SQLite.text({ primaryKey: true }),
+    noteId: State.SQLite.text(),
+    emoji: State.SQLite.text(),
+    type: State.SQLite.text({
+      schema: Schema.Enums({
+        regular: "regular",
+        super: "super",
+      }),
+    }),
+    createdBy: State.SQLite.text({ default: "" }),
+    createdAt: State.SQLite.integer({
+      nullable: true,
+      schema: Schema.DateFromNumber,
+    }),
+    deletedAt: State.SQLite.integer({
+      nullable: true,
+      schema: Schema.DateFromNumber,
+    }),
+  },
+  indexes: [
+    {
+      name: "note_id",
+      columns: ["noteId"],
+    },
+  ],
+});
+
 const uiState = State.SQLite.clientDocument({
   name: "uiState",
   schema: Schema.Struct({ newTodoText: Schema.String, filter: Filter }),
@@ -33,13 +80,15 @@ const uiState = State.SQLite.clientDocument({
 
 export type Todo = State.SQLite.FromTable.RowDecoded<typeof todos>;
 export type UiState = typeof uiState.default.value;
+export type Note = State.SQLite.FromTable.RowDecoded<typeof note>;
+export type Reaction = State.SQLite.FromTable.RowDecoded<typeof reaction>;
 
 export const events = {
   ...eventsDefs,
   uiStateSet: uiState.set,
 };
 
-export const tables = { todos, uiState };
+export const tables = { todos, uiState, note, reaction };
 
 const materializers = State.SQLite.materializers(events, {
   "v1.TodoCreated": ({ id, text }) =>
@@ -56,6 +105,17 @@ const materializers = State.SQLite.materializers(events, {
     todos.update({ editing: true }).where({ id }),
   "v1.TodoEditingFinished": ({ id, text }) =>
     todos.update({ editing: false, text }).where({ id }),
+  "v1.NoteCreated": ({ id, content, createdBy }) =>
+    note.insert({ id, content, createdBy }),
+  "v1.NoteUpdated": ({ id, content }) => note.update({ content }).where({ id }),
+  "v1.NoteDeleted": ({ id, deletedAt }) =>
+    note.update({ deletedAt }).where({ id }),
+  "v1.NoteReacted": ({ id, noteId, emoji, type, createdBy }) =>
+    reaction.insert({ id, noteId, emoji, type, createdBy }),
+  "v1.NoteReactionDeleted": ({ id, deletedAt }) =>
+    reaction.update({ deletedAt }).where({ id }),
+  "v1.NoteReactionCreated": ({ id, noteId, emoji, type, createdBy }) =>
+    reaction.insert({ id, noteId, emoji, type, createdBy }),
 });
 
 const state = State.SQLite.makeState({ tables, materializers });
