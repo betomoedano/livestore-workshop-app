@@ -108,7 +108,10 @@ const materializers = State.SQLite.materializers(events, {
     todos.update({ editing: false, text }).where({ id }),
   "v1.NoteCreated": ({ id, title, content, createdBy }) =>
     note.insert({ id, title, content, createdBy }),
-  "v1.NoteUpdated": ({ id, content }) => note.update({ content }).where({ id }),
+  "v1.NoteTitleUpdated": ({ id, title }) =>
+    note.update({ title }).where({ id }),
+  "v1.NoteContentUpdated": ({ id, content }) =>
+    note.update({ content }).where({ id }),
   "v1.NoteDeleted": ({ id, deletedAt }) =>
     note.update({ deletedAt }).where({ id }),
   "v1.NoteReacted": ({ id, noteId, emoji, type, createdBy }) =>

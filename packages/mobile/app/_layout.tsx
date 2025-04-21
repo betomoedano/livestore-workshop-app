@@ -112,6 +112,12 @@ export default function RootLayout() {
             },
           }}
         />
+        <Stack.Screen
+          name="[note]"
+          options={{
+            title: "Note",
+          }}
+        />
       </Stack>
     </LiveStoreProvider>
   );

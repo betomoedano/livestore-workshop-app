@@ -45,8 +45,13 @@ export const noteCreated = Events.synced({
   }),
 });
 
-export const noteUpdated = Events.synced({
-  name: "v1.NoteUpdated",
+export const noteTitleUpdated = Events.synced({
+  name: "v1.NoteTitleUpdated",
+  schema: Schema.Struct({ id: Schema.String, title: Schema.String }),
+});
+
+export const noteContentUpdated = Events.synced({
+  name: "v1.NoteContentUpdated",
   schema: Schema.Struct({ id: Schema.String, content: Schema.String }),
 });
 

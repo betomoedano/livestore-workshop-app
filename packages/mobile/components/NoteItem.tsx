@@ -15,9 +15,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
   return (
     <Link
       href={{
-        pathname: "/note/[id]",
+        pathname: "/[note]",
         params: {
-          id,
+          note: id,
         },
       }}
       style={styles.container}
