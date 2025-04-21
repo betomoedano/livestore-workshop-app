@@ -2,6 +2,7 @@ import { useQuery, useStore } from "@livestore/react";
 import { nanoid } from "@livestore/utils/nanoid";
 import React from "react";
 import {
+  Button,
   Keyboard,
   Pressable,
   StyleSheet,
@@ -45,7 +46,20 @@ export const NewTodo: React.FC = () => {
       }}
     >
       <View style={styles.container}>
-        <TextInput
+        <Button
+          title="New Note"
+          onPress={() => {
+            store.commit(
+              events.noteCreated({
+                id: nanoid(),
+                title: "My first note",
+                content: "Hello, world!",
+                createdBy: "beto",
+              })
+            );
+          }}
+        />
+        {/* <TextInput
           ref={inputRef}
           style={styles.input}
           value={newTodoText}
@@ -67,7 +81,7 @@ export const NewTodo: React.FC = () => {
         </Pressable>
         <Pressable onPress={reset}>
           <Text style={styles.submit}>Clear</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     </TouchableWithoutFeedback>
   );

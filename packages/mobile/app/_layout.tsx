@@ -50,6 +50,17 @@ export default function RootLayout() {
             })
           );
         }
+
+        if (store.query(tables.note.count()) === 0) {
+          store.commit(
+            events.noteCreated({
+              id: nanoid(),
+              title: "My first note",
+              content: "Hello, world!",
+              createdBy: "beto",
+            })
+          );
+        }
       }}
       adapter={adapter}
       batchUpdates={batchUpdates}

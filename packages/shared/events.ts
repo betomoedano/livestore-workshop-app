@@ -39,6 +39,7 @@ export const noteCreated = Events.synced({
   name: "v1.NoteCreated",
   schema: Schema.Struct({
     id: Schema.String,
+    title: Schema.String,
     content: Schema.String,
     createdBy: Schema.String,
   }),

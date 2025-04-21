@@ -26,6 +26,7 @@ const note = State.SQLite.table({
   name: "note",
   columns: {
     id: State.SQLite.text({ primaryKey: true }),
+    title: State.SQLite.text({ default: "" }),
     content: State.SQLite.text({ default: "" }),
     createdBy: State.SQLite.text({ default: "" }),
     createdAt: State.SQLite.integer({
@@ -105,8 +106,8 @@ const materializers = State.SQLite.materializers(events, {
     todos.update({ editing: true }).where({ id }),
   "v1.TodoEditingFinished": ({ id, text }) =>
     todos.update({ editing: false, text }).where({ id }),
-  "v1.NoteCreated": ({ id, content, createdBy }) =>
-    note.insert({ id, content, createdBy }),
+  "v1.NoteCreated": ({ id, title, content, createdBy }) =>
+    note.insert({ id, title, content, createdBy }),
   "v1.NoteUpdated": ({ id, content }) => note.update({ content }).where({ id }),
   "v1.NoteDeleted": ({ id, deletedAt }) =>
     note.update({ deletedAt }).where({ id }),
