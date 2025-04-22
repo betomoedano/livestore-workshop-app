@@ -77,7 +77,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
         {Object.entries(superReactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
-            style={[styles.reactionButton, { backgroundColor: "#FFD700" }]}
+            style={[styles.reactionButton, { backgroundColor: "#007AFF" }]}
             onPress={() =>
               router.push({
                 pathname: "/reaction/[note]",
@@ -86,7 +86,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             }
           >
             <Text style={[styles.emojiText]}>{emoji}</Text>
-            <Text style={[styles.countText]}>{count}</Text>
+            <Text style={[styles.countText, { color: "white" }]}>{count}</Text>
           </Pressable>
         ))}
       </View>
@@ -99,19 +99,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
-    gap: 8,
+    gap: 14,
   },
   reactionButton: {
     paddingHorizontal: 8,
     paddingVertical: 6,
     backgroundColor: "#f3f4f6",
     borderRadius: 12,
-    marginRight: 8,
     flexDirection: "row",
     alignItems: "center",
   },
   emojiText: {
-    fontSize: 16,
+    fontSize: 20,
     marginRight: 4,
   },
   countText: {

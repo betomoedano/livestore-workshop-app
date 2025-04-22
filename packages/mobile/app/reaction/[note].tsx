@@ -5,7 +5,7 @@ import { events, tables } from "@workshop/shared/schema";
 import { nanoid, queryDb } from "@livestore/livestore";
 import { useRouter } from "expo-router";
 
-const reactions = ["👍", "❤️", "🔥", "🚀", "💡", "💥"];
+const reactions = ["👍", "❤️", "🔥", "🚀", "💡", "✨"];
 
 export default function ReactionScreen() {
   const { store } = useStore();
@@ -31,25 +31,29 @@ export default function ReactionScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{note.title}</Text>
-      <Text style={styles.subtitle}>
-        Created {new Date(note.createdAt).toDateString()}
-      </Text>
+      <View>
+        <Text style={styles.title}>{note.title || "Untitled"}</Text>
+        <Text style={styles.subtitle}>
+          Created by {note.createdBy} on{" "}
+          {new Date(note.createdAt).toDateString()}
+        </Text>
+      </View>
 
-      <Text style={styles.subtitle}>
-        Long press to super react to this note
-      </Text>
-
-      <View style={styles.reactionsContainer}>
-        {reactions.map((reaction) => (
-          <Pressable
-            key={reaction}
-            onPress={() => handleReaction(reaction, "regular")}
-            onLongPress={() => handleReaction(reaction, "super")}
-          >
-            <ReactionItem key={reaction} reaction={reaction} />
-          </Pressable>
-        ))}
+      <View style={{ gap: 6 }}>
+        <View style={styles.reactionsContainer}>
+          {reactions.map((reaction) => (
+            <Pressable
+              key={reaction}
+              onPress={() => handleReaction(reaction, "regular")}
+              onLongPress={() => handleReaction(reaction, "super")}
+            >
+              <ReactionItem key={reaction} reaction={reaction} />
+            </Pressable>
+          ))}
+        </View>
+        <Text style={[styles.subtitle, { textAlign: "center" }]}>
+          Long press to super react to this note
+        </Text>
       </View>
     </View>
   );
@@ -58,7 +62,7 @@ export default function ReactionScreen() {
 const ReactionItem = ({ reaction }: { reaction: string }) => {
   return (
     <View style={styles.reactionItem}>
-      <Text>{reaction}</Text>
+      <Text style={{ fontSize: 20 }}>{reaction}</Text>
     </View>
   );
 };
@@ -69,17 +73,20 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
+    textTransform: "capitalize",
+    marginBottom: 4,
   },
   reactionsContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 8,
+    justifyContent: "space-evenly",
+    gap: 6,
   },
   reactionItem: {
-    padding: 16,
-    borderRadius: 30,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
     backgroundColor: "lightgray",
   },
   subtitle: {

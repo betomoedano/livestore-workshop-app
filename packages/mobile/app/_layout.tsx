@@ -138,7 +138,7 @@ export default function RootLayout() {
           options={{
             title: "Reaction",
             presentation: "formSheet",
-            sheetAllowedDetents: [0.4, 0.7],
+            sheetAllowedDetents: [0.3, 0.7],
             headerShown: false,
             sheetGrabberVisible: true,
           }}
