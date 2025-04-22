@@ -12,7 +12,7 @@ import {
   Pressable,
   Platform,
 } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 
 import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
@@ -32,6 +32,7 @@ const adapter = makePersistedAdapter({
 
 export default function RootLayout() {
   const [, rerender] = React.useState({});
+  const router = useRouter();
   const [synced, setSynced] = React.useState(false);
 
   return (
@@ -81,21 +82,31 @@ export default function RootLayout() {
           name="index"
           options={{
             title: "Home",
+            headerStyle: {
+              backgroundColor: "#F2F2F7",
+            },
+            headerShadowVisible: false,
+            // headerLargeTitle: true,
             headerRight: ({ tintColor }) => {
               const { store } = useStore();
               return (
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Pressable
-                    onPress={() =>
+                    onPress={() => {
+                      const id = nanoid();
                       store.commit(
                         events.noteCreated({
-                          id: nanoid(),
-                          title: `new note ${Math.random().toFixed(3)}`,
-                          content: "new note",
+                          id,
+                          title: "",
+                          content: "",
                           createdBy: "beto",
                         })
-                      )
-                    }
+                      );
+                      router.push({
+                        pathname: "/[note]",
+                        params: { note: id },
+                      });
+                    }}
                   >
                     <Text
                       style={{

@@ -31,14 +31,14 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
       }}
       style={styles.container}
     >
-      <View>
+      <View style={{ width: "100%" }}>
         <Text selectable style={styles.title} numberOfLines={1}>
-          {title}
+          {title || "Untitled"}
         </Text>
         <Text style={styles.content} numberOfLines={3}>
-          {content}
+          {content || "No content"}
         </Text>
-        <Text style={styles.content}>By {createdBy}</Text>
+
         <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
           <Text style={styles.deleteText}>Delete</Text>
         </Pressable>
@@ -50,22 +50,22 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 16,
     backgroundColor: "#ffffff",
     borderRadius: 12,
-    padding: 16,
-    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-    borderLeftWidth: 4,
-    borderLeftColor: "#6366f1",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderColor: "lightgray",
   },
   title: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: "700",
     color: "#1f2937",
-    marginBottom: 6,
+    marginBottom: 4,
+    textTransform: "capitalize",
   },
   content: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#6b7280",
     lineHeight: 20,
   },

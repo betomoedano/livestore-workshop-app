@@ -1,9 +1,11 @@
 import { queryDb } from "@livestore/livestore";
 import { useQuery } from "@livestore/react";
 import { tables } from "@workshop/shared/schema";
+import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 export const NoteReactions = ({ noteId }: { noteId: string }) => {
+  const router = useRouter();
   const regularReactions = useQuery(
     queryDb(
       tables.reaction.where({
@@ -43,22 +45,51 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
     return acc;
   }, {} as Record<string, number>);
 
+  if (regularReactions.length === 0 && superReactions.length === 0) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      {Object.entries(reactionCounts).map(([emoji, count]) => (
-        <Pressable key={emoji} style={styles.reactionButton}>
-          <Text style={styles.emojiText}>{emoji}</Text>
-          <Text style={styles.countText}>{count}</Text>
-        </Pressable>
-      ))}
-      {Object.entries(superReactionCounts).map(([emoji, count]) => (
-        <Pressable key={emoji} style={[styles.reactionButton, { padding: 10 }]}>
-          <Text style={[styles.emojiText, { fontSize: 22 }]}>{emoji}</Text>
-          <Text style={[styles.countText, { fontSize: 18, fontWeight: "700" }]}>
-            {count}
-          </Text>
-        </Pressable>
-      ))}
+    <View style={{ width: "100%" }}>
+      <View
+        style={{
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderColor: "lightgray",
+          marginVertical: 12,
+        }}
+      />
+      <View style={styles.container}>
+        {Object.entries(reactionCounts).map(([emoji, count]) => (
+          <Pressable
+            key={emoji}
+            style={styles.reactionButton}
+            onPress={() =>
+              router.push({
+                pathname: "/reaction/[note]",
+                params: { note: noteId },
+              })
+            }
+          >
+            <Text style={styles.emojiText}>{emoji}</Text>
+            <Text style={styles.countText}>{count}</Text>
+          </Pressable>
+        ))}
+        {Object.entries(superReactionCounts).map(([emoji, count]) => (
+          <Pressable
+            key={emoji}
+            style={[styles.reactionButton, { backgroundColor: "#FFD700" }]}
+            onPress={() =>
+              router.push({
+                pathname: "/reaction/[note]",
+                params: { note: noteId },
+              })
+            }
+          >
+            <Text style={[styles.emojiText]}>{emoji}</Text>
+            <Text style={[styles.countText]}>{count}</Text>
+          </Pressable>
+        ))}
+      </View>
     </View>
   );
 };
@@ -69,10 +100,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
     gap: 8,
-    marginTop: 8,
   },
   reactionButton: {
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
     backgroundColor: "#f3f4f6",
     borderRadius: 12,
     marginRight: 8,
