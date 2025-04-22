@@ -123,7 +123,7 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
-          name="reaction/[reaction]"
+          name="reaction/[note]"
           options={{
             title: "Reaction",
             presentation: "formSheet",

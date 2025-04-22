@@ -1,11 +1,12 @@
 import { useStore } from "@livestore/react";
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import type { Note as INote } from "@workshop/shared/schema";
 import { events } from "@workshop/shared/schema";
 import { Link, router } from "expo-router";
 import { NoteReactions } from "./NoteReactions";
+
 export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
   const { store } = useStore();
 
@@ -22,9 +23,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
       }}
       onLongPress={() => {
         router.push({
-          pathname: "/reaction/[reaction]",
+          pathname: "/reaction/[note]",
           params: {
-            reaction: "👍",
+            note: id,
           },
         });
       }}
@@ -38,9 +39,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
           {content}
         </Text>
         <Text style={styles.content}>By {createdBy}</Text>
-        {/* <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
-        <Text style={styles.deleteText}>Delete</Text>
-      </Pressable> */}
+        <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
+          <Text style={styles.deleteText}>Delete</Text>
+        </Pressable>
         <NoteReactions />
       </View>
     </Link>

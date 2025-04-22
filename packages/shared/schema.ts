@@ -30,7 +30,6 @@ const note = State.SQLite.table({
     content: State.SQLite.text({ default: "" }),
     createdBy: State.SQLite.text({ default: "" }),
     createdAt: State.SQLite.integer({
-      nullable: true,
       schema: Schema.DateFromNumber,
     }),
     deletedAt: State.SQLite.integer({
@@ -107,7 +106,7 @@ const materializers = State.SQLite.materializers(events, {
   "v1.TodoEditingFinished": ({ id, text }) =>
     todos.update({ editing: false, text }).where({ id }),
   "v1.NoteCreated": ({ id, title, content, createdBy }) =>
-    note.insert({ id, title, content, createdBy }),
+    note.insert({ id, title, content, createdBy, createdAt: new Date() }),
   "v1.NoteTitleUpdated": ({ id, title }) =>
     note.update({ title }).where({ id }),
   "v1.NoteContentUpdated": ({ id, content }) =>
@@ -119,7 +118,14 @@ const materializers = State.SQLite.materializers(events, {
   "v1.NoteReactionDeleted": ({ id, deletedAt }) =>
     reaction.update({ deletedAt }).where({ id }),
   "v1.NoteReactionCreated": ({ id, noteId, emoji, type, createdBy }) =>
-    reaction.insert({ id, noteId, emoji, type, createdBy }),
+    reaction.insert({
+      id,
+      noteId,
+      emoji,
+      type,
+      createdBy,
+      createdAt: new Date(),
+    }),
 });
 
 const state = State.SQLite.makeState({ tables, materializers });
