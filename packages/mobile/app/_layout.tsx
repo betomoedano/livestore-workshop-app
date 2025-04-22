@@ -13,7 +13,7 @@ import {
   Platform,
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
-
+import { Ionicons } from "@expo/vector-icons";
 import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
 
@@ -87,42 +87,43 @@ export default function RootLayout() {
             },
             headerShadowVisible: false,
             // headerLargeTitle: true,
-            headerRight: ({ tintColor }) => {
-              const { store } = useStore();
+            headerLeft: () => {
               return (
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Pressable
-                    onPress={() => {
-                      const id = nanoid();
-                      store.commit(
-                        events.noteCreated({
-                          id,
-                          title: "",
-                          content: "",
-                          createdBy: "beto",
-                        })
-                      );
-                      router.push({
-                        pathname: "/[note]",
-                        params: { note: id },
-                      });
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: tintColor,
-                        fontSize: 30,
-                        marginRight: 10,
-                      }}
-                    >
-                      +
-                    </Text>
-                  </Pressable>
                   <Switch
                     value={synced}
                     onValueChange={() => setSynced(!synced)}
                   />
                 </View>
+              );
+            },
+            headerRight: ({ tintColor }) => {
+              const { store } = useStore();
+              return (
+                <Pressable
+                  onPress={() => {
+                    const id = nanoid();
+                    store.commit(
+                      events.noteCreated({
+                        id,
+                        title: "",
+                        content: "",
+                        createdBy: "beto",
+                      })
+                    );
+                    router.push({
+                      pathname: "/[note]",
+                      params: { note: id },
+                    });
+                  }}
+                >
+                  <Ionicons
+                    name="add"
+                    size={30}
+                    color={tintColor}
+                    style={{ marginRight: 10 }}
+                  />
+                </Pressable>
               );
             },
           }}
