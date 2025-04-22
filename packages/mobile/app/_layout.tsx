@@ -27,7 +27,7 @@ const syncUrl = Platform.select({
 });
 
 const adapter = makePersistedAdapter({
-  sync: { backend: makeCfSync({ url: syncUrl }) },
+  sync: { backend: makeCfSync({ url: syncUrl! }) },
 });
 
 export default function RootLayout() {

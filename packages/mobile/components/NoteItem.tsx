@@ -42,7 +42,7 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
         <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
           <Text style={styles.deleteText}>Delete</Text>
         </Pressable>
-        <NoteReactions />
+        <NoteReactions noteId={id} />
       </View>
     </Link>
   );
