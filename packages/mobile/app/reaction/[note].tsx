@@ -3,16 +3,31 @@ import { useLocalSearchParams } from "expo-router";
 import { useStore } from "@livestore/react";
 import { events, tables } from "@workshop/shared/schema";
 import { nanoid, queryDb } from "@livestore/livestore";
+import { useRouter } from "expo-router";
 
 const reactions = ["👍", "❤️", "🔥", "🚀", "💡", "💥"];
 
 export default function ReactionScreen() {
   const { store } = useStore();
+  const router = useRouter();
   const { note: noteId } = useLocalSearchParams() as { note: string };
 
   const note = store.useQuery(
     queryDb(tables.note.where({ id: noteId }).first(), { label: "noteById" })
   );
+
+  function handleReaction(emoji: string, type: "regular" | "super") {
+    store.commit(
+      events.noteReacted({
+        id: nanoid(),
+        noteId: noteId,
+        emoji: emoji,
+        type: type,
+        createdBy: "beto",
+      })
+    );
+    router.back();
+  }
 
   return (
     <View style={styles.container}>
@@ -29,28 +44,8 @@ export default function ReactionScreen() {
         {reactions.map((reaction) => (
           <Pressable
             key={reaction}
-            onPress={() =>
-              store.commit(
-                events.noteReacted({
-                  id: nanoid(),
-                  noteId: noteId,
-                  emoji: reaction,
-                  type: "regular",
-                  createdBy: "beto",
-                })
-              )
-            }
-            onLongPress={() =>
-              store.commit(
-                events.noteReacted({
-                  id: nanoid(),
-                  noteId: noteId,
-                  emoji: reaction,
-                  type: "super",
-                  createdBy: "beto",
-                })
-              )
-            }
+            onPress={() => handleReaction(reaction, "regular")}
+            onLongPress={() => handleReaction(reaction, "super")}
           >
             <ReactionItem key={reaction} reaction={reaction} />
           </Pressable>
