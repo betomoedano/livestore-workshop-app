@@ -1,17 +1,25 @@
+import React, { useRef, useEffect } from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useStore } from "@livestore/react";
 import { events, tables } from "@workshop/shared/schema";
 import { queryDb } from "@livestore/livestore";
-import React from "react";
 
 export default function Note() {
   const { store } = useStore();
   const { note: noteId } = useLocalSearchParams() as { note: string };
+  const titleInputRef = useRef<TextInput>(null);
 
   const note = store.useQuery(
     queryDb(tables.note.where({ id: noteId }).first(), { label: "noteById" })
   );
+
+  useEffect(() => {
+    // Focus the title input when component mounts
+    if (titleInputRef.current) {
+      titleInputRef.current.focus();
+    }
+  }, []);
 
   const handleEditTitle = (title: string) => {
     store.commit(events.noteTitleUpdated({ id: noteId, title }));
@@ -22,28 +30,33 @@ export default function Note() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.noteCard}>
-        <TextInput
-          style={styles.titleInput}
-          value={note.title ?? ""}
-          onChangeText={handleEditTitle}
-          placeholder="Note title"
-        />
-        <TextInput
-          style={styles.contentInput}
-          value={note.content ?? ""}
-          onChangeText={handleEditContent}
-          multiline
-          textAlignVertical="top"
-          placeholder="Write your note here..."
-          maxLength={500}
-        />
-        {note.createdBy && (
-          <Text style={styles.authorText}>By {note.createdBy}</Text>
-        )}
+    <>
+      <Stack.Screen
+        options={{
+          headerTitle: note.title || "Untitled",
+        }}
+      />
+      <View style={styles.container}>
+        <View style={styles.noteCard}>
+          <TextInput
+            ref={titleInputRef}
+            style={styles.title}
+            value={note.title ?? ""}
+            onChangeText={handleEditTitle}
+            placeholder="Note title"
+          />
+          <TextInput
+            style={styles.content}
+            value={note.content ?? ""}
+            onChangeText={handleEditContent}
+            multiline
+            textAlignVertical="top"
+            placeholder="Write your note here..."
+            maxLength={500}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -51,36 +64,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#f5f7fa",
+    backgroundColor: "#F2F2F7",
   },
   noteCard: {
+    marginBottom: 16,
     backgroundColor: "#ffffff",
     borderRadius: 12,
-    padding: 16,
-    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-    borderLeftWidth: 4,
-    borderLeftColor: "#6366f1",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
-  titleInput: {
+  title: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: "700",
     color: "#1f2937",
-    marginBottom: 12,
-    padding: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "#e5e7eb",
+    marginBottom: 4,
+    textTransform: "capitalize",
   },
-  contentInput: {
-    fontSize: 14,
+  content: {
+    fontSize: 16,
     color: "#6b7280",
     lineHeight: 20,
-    padding: 8,
-  },
-  authorText: {
-    fontSize: 14,
-    color: "#6b7280",
-    marginTop: 12,
-    textAlign: "right",
-    fontStyle: "italic",
   },
 });
