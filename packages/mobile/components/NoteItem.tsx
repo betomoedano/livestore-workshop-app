@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 import type { Note as INote } from "@workshop/shared/schema";
 import { events } from "@workshop/shared/schema";
-import { Link } from "expo-router";
-
+import { Link, router } from "expo-router";
+import { NoteReactions } from "./NoteReactions";
 export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
   const { store } = useStore();
 
@@ -20,9 +20,17 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
           note: id,
         },
       }}
+      onLongPress={() => {
+        router.push({
+          pathname: "/reaction/[reaction]",
+          params: {
+            reaction: "👍",
+          },
+        });
+      }}
       style={styles.container}
     >
-      <View style={styles.contentContainer}>
+      <View>
         <Text selectable style={styles.title} numberOfLines={1}>
           {title}
         </Text>
@@ -30,10 +38,11 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
           {content}
         </Text>
         <Text style={styles.content}>By {createdBy}</Text>
-      </View>
-      {/* <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
+        {/* <Pressable style={styles.deleteButton} onPress={handleDeleteNote}>
         <Text style={styles.deleteText}>Delete</Text>
       </Pressable> */}
+        <NoteReactions />
+      </View>
     </Link>
   );
 };
@@ -45,15 +54,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     borderLeftWidth: 4,
     borderLeftColor: "#6366f1",
-  },
-  contentContainer: {
-    flex: 1,
-    marginRight: 10,
   },
   title: {
     fontSize: 18,

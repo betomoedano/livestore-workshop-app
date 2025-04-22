@@ -122,6 +122,16 @@ export default function RootLayout() {
             title: "Note",
           }}
         />
+        <Stack.Screen
+          name="reaction/[reaction]"
+          options={{
+            title: "Reaction",
+            presentation: "formSheet",
+            sheetAllowedDetents: [0.4, 0.7],
+            headerShown: false,
+            sheetGrabberVisible: true,
+          }}
+        />
       </Stack>
     </LiveStoreProvider>
   );
