@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useStore } from "@livestore/react";
 import { events, tables } from "@workshop/shared/schema";
@@ -23,18 +23,26 @@ export default function Note() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.titleInput}
-        value={note.title ?? ""}
-        onChangeText={handleEditTitle}
-      />
-      <TextInput
-        style={styles.contentInput}
-        value={note.content ?? ""}
-        onChangeText={handleEditContent}
-        multiline
-        textAlignVertical="top"
-      />
+      <View style={styles.noteCard}>
+        <TextInput
+          style={styles.titleInput}
+          value={note.title ?? ""}
+          onChangeText={handleEditTitle}
+          placeholder="Note title"
+        />
+        <TextInput
+          style={styles.contentInput}
+          value={note.content ?? ""}
+          onChangeText={handleEditContent}
+          multiline
+          textAlignVertical="top"
+          placeholder="Write your note here..."
+          maxLength={500}
+        />
+        {note.createdBy && (
+          <Text style={styles.authorText}>By {note.createdBy}</Text>
+        )}
+      </View>
     </View>
   );
 }
@@ -43,20 +51,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#f5f7fa",
+  },
+  noteCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: 12,
+    padding: 16,
+    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
+    borderLeftWidth: 4,
+    borderLeftColor: "#6366f1",
   },
   titleInput: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#1f2937",
+    marginBottom: 12,
     padding: 8,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: "#e5e7eb",
   },
   contentInput: {
-    flex: 1,
-    fontSize: 16,
+    fontSize: 14,
+    color: "#6b7280",
+    lineHeight: 20,
     padding: 8,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 8,
+  },
+  authorText: {
+    fontSize: 14,
+    color: "#6b7280",
+    marginTop: 12,
+    textAlign: "right",
+    fontStyle: "italic",
   },
 });
