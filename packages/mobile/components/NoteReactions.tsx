@@ -71,13 +71,13 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             }
           >
             <Text style={styles.emojiText}>{emoji}</Text>
-            <Text style={styles.countText}>{count}</Text>
+            {count > 1 && <Text style={styles.regularCountText}>{count}</Text>}
           </Pressable>
         ))}
         {Object.entries(superReactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
-            style={[styles.reactionButton, { backgroundColor: "#007AFF" }]}
+            style={[styles.reactionButton, styles.superReactionButton]}
             onPress={() =>
               router.push({
                 pathname: "/reaction/[note]",
@@ -85,8 +85,8 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
               })
             }
           >
-            <Text style={[styles.emojiText]}>{emoji}</Text>
-            <Text style={[styles.countText, { color: "white" }]}>{count}</Text>
+            <Text style={styles.emojiText}>{emoji}</Text>
+            {count > 1 && <Text style={styles.superCountText}>{count}</Text>}
           </Pressable>
         ))}
       </View>
@@ -109,13 +109,47 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  superReactionButton: {
+    backgroundColor: "#007AFF",
+  },
   emojiText: {
     fontSize: 20,
-    marginRight: 4,
+    // marginRight: 4,
+    fontVariant: ["tabular-nums"],
   },
   countText: {
     fontSize: 14,
     fontWeight: "500",
     color: "#6b7280",
+  },
+  superCountText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "white",
+    position: "absolute",
+    right: -10,
+    top: -10,
+    backgroundColor: "#007AFF",
+    borderWidth: 1,
+    borderColor: "white",
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    textAlign: "center",
+  },
+  regularCountText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "white",
+    position: "absolute",
+    right: -10,
+    top: -10,
+    backgroundColor: "#6b7280",
+    borderWidth: 1,
+    borderColor: "white",
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    textAlign: "center",
   },
 });

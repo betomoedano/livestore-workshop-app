@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   deleteButton: {
+    position: "absolute",
+    top: 0,
+    right: 0,
     backgroundColor: "#fee2e2",
     paddingVertical: 8,
     paddingHorizontal: 12,
