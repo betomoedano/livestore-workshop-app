@@ -10,6 +10,7 @@ import {
   View,
   Switch,
   Pressable,
+  Platform,
 } from "react-native";
 import { Stack } from "expo-router";
 
@@ -20,7 +21,10 @@ import { makeCfSync } from "@livestore/sync-cf";
 const TEST_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E";
 
-const syncUrl = process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL;
+const syncUrl = Platform.select({
+  default: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL,
+  android: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_ANDROID_LOCAL, // https://developer.android.com/studio/run/emulator-networking#networkaddresses
+});
 
 const adapter = makePersistedAdapter({
   sync: { backend: makeCfSync({ url: syncUrl }) },

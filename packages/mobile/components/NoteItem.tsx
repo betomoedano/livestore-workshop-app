@@ -1,6 +1,6 @@
 import { useStore } from "@livestore/react";
 import * as React from "react";
-import { StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import type { Note as INote } from "@workshop/shared/schema";
 import { events } from "@workshop/shared/schema";
@@ -22,9 +22,15 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
       }}
       style={styles.container}
     >
-      <Text selectable style={styles.text}>
-        {title}
-      </Text>
+      <View>
+        <Text selectable style={styles.text}>
+          {title}
+        </Text>
+        <Text style={{ fontSize: 14, color: "gray" }}>{content}</Text>
+      </View>
+      <Pressable onPress={handleDeleteNote}>
+        <Text>Delete</Text>
+      </Pressable>
     </Link>
   );
 };
@@ -32,6 +38,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
+    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+    borderRadius: 10,
+    padding: 10,
   },
   text: {
     fontSize: 16,
