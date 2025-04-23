@@ -1,8 +1,15 @@
 import { useQuery } from "@livestore/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { visibleNotes$ } from "@workshop/shared/queries";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: ({ context }) => {
+    if (!context.auth.user) {
+      throw redirect({
+        to: "/login",
+      });
+    }
+  },
   component: Index,
 });
 
