@@ -46,10 +46,7 @@ const reaction = State.SQLite.table({
     noteId: State.SQLite.text(),
     emoji: State.SQLite.text(),
     type: State.SQLite.text({
-      schema: Schema.Enums({
-        regular: "regular",
-        super: "super",
-      }),
+      schema: Schema.Literal("regular", "super"),
     }),
     createdBy: State.SQLite.text({ default: "" }),
     createdAt: State.SQLite.integer({
@@ -122,7 +119,7 @@ const materializers = State.SQLite.materializers(events, {
       id,
       noteId,
       emoji,
-      type,
+      type: type as "regular" | "super",
       createdBy,
       createdAt: new Date(),
     }),

@@ -26,7 +26,7 @@ export default function ReactionScreen() {
         noteId: noteId,
         emoji: emoji,
         type: type,
-        createdBy: user!.id,
+        createdBy: user!.name,
       })
     );
     router.back();

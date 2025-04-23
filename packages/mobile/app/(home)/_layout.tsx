@@ -66,7 +66,7 @@ export default function RootLayout() {
               id: nanoid(),
               title: "My first note",
               content: "Hello, world!",
-              createdBy: user.id,
+              createdBy: user.name,
             })
           );
         }
@@ -107,7 +107,7 @@ export default function RootLayout() {
                         id,
                         title: "",
                         content: "",
-                        createdBy: user.id,
+                        createdBy: user.name,
                       })
                     );
                     router.push({
