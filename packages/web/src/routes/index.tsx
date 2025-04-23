@@ -1,8 +1,12 @@
-import "./App.css";
 import { useQuery } from "@livestore/react";
+import { createFileRoute } from "@tanstack/react-router";
 import { visibleNotes$ } from "@workshop/shared/queries";
 
-function App() {
+export const Route = createFileRoute("/")({
+  component: Index,
+});
+
+function Index() {
   const visibleNotes = useQuery(visibleNotes$);
 
   return (
@@ -18,5 +22,3 @@ function App() {
     </>
   );
 }
-
-export default App;

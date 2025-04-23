@@ -1,19 +1,9 @@
 import React from "react";
-import { nanoid, queryDb } from "@livestore/livestore";
 import { useQuery } from "@livestore/react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
-import { tables } from "@workshop/shared/schema";
 import { Note } from "./NoteItem.tsx";
-
-const visibleNotes$ = queryDb(
-  (get) => {
-    return tables.note.where({
-      deletedAt: null,
-    });
-  },
-  { label: "visibleNotes" }
-);
+import { visibleNotes$ } from "@workshop/shared/queries.ts";
 
 export const ListNotes: React.FC = () => {
   const visibleNotes = useQuery(visibleNotes$);
