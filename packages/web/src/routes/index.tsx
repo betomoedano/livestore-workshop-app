@@ -10,7 +10,7 @@ function Index() {
   const visibleNotes = useQuery(visibleNotes$);
 
   return (
-    <>
+    <div className="p-2">
       <h1 className="text-2xl font-bold">Notes</h1>
       <ul className="todo-list">
         {visibleNotes.map((note) => (
@@ -19,6 +19,6 @@ function Index() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

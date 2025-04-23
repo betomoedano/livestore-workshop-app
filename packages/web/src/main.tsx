@@ -12,6 +12,7 @@ import { unstable_batchedUpdates } from "react-dom";
 
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen.ts";
+import { AuthProvider } from "./context/auth.tsx";
 
 const router = createRouter({
   routeTree,
@@ -31,20 +32,22 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <LiveStoreProvider
-        schema={schema}
-        storeId={EXPO_CLUB_STORE_ID}
-        adapter={adapter}
-        batchUpdates={unstable_batchedUpdates}
-        renderLoading={({ stage }) => <div>Loading... {stage}</div>}
-        renderShutdown={() => <div>Shutting down...</div>}
-        syncPayload={{
-          authToken:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E",
-        }}
-      >
-        <RouterProvider router={router} />
-      </LiveStoreProvider>
+      <AuthProvider>
+        <LiveStoreProvider
+          schema={schema}
+          storeId={EXPO_CLUB_STORE_ID}
+          adapter={adapter}
+          batchUpdates={unstable_batchedUpdates}
+          renderLoading={({ stage }) => <div>Loading... {stage}</div>}
+          renderShutdown={() => <div>Shutting down...</div>}
+          syncPayload={{
+            authToken:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E",
+          }}
+        >
+          <RouterProvider router={router} />
+        </LiveStoreProvider>
+      </AuthProvider>
     </StrictMode>
   );
 }
