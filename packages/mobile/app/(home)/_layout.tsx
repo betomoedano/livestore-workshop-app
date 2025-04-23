@@ -16,7 +16,7 @@ import { Redirect, Stack, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
-import { AuthContext, AuthProvider } from "../../context/auth.tsx";
+import { AuthContext } from "../../context/auth.tsx";
 
 // Hardcoded token for testing - valid for 24 hours
 const TEST_TOKEN =

@@ -6,9 +6,10 @@ import { makePersistedAdapter } from "@livestore/adapter-web";
 import LiveStoreSharedWorker from "@livestore/adapter-web/shared-worker?sharedworker";
 import LiveStoreWorker from "../livestore.worker.ts?worker";
 import { LiveStoreProvider } from "@livestore/react";
-import { schema } from "@workshop/shared/schema.ts";
+import { events, schema, tables } from "@workshop/shared/schema.ts";
 import { unstable_batchedUpdates } from "react-dom";
 import { NotesList } from "../components/NotesList.tsx";
+import { nanoid } from "@livestore/livestore";
 const EXPO_CLUB_STORE_ID = "expo-club";
 
 export const Route = createFileRoute("/")({
@@ -61,6 +62,20 @@ function Index() {
         batchUpdates={unstable_batchedUpdates}
         renderLoading={({ stage }) => <div>Loading... {stage}</div>}
         renderShutdown={() => <div>Shutting down...</div>}
+        boot={(store) => {
+          if (storeId === EXPO_CLUB_STORE_ID) return;
+
+          if (store.query(tables.note.count()) === 0) {
+            store.commit(
+              events.noteCreated({
+                id: nanoid(),
+                title: "My first note",
+                content: "Hello, world!",
+                createdBy: user!.name,
+              })
+            );
+          }
+        }}
         syncPayload={{
           authToken:
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E",
