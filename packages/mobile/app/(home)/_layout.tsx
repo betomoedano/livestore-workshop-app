@@ -31,11 +31,13 @@ const adapter = makePersistedAdapter({
   sync: { backend: makeCfSync({ url: syncUrl! }) },
 });
 
+const EXPO_CLUB_STORE_ID = "expo-club";
+
 export default function RootLayout() {
   const { user } = use(AuthContext);
   const [, rerender] = React.useState({});
   const router = useRouter();
-  const [synced, setSynced] = React.useState(false);
+  const [syncWithWorkshop, setSyncWithWorkshop] = React.useState(false);
 
   if (!user) {
     return <Redirect href="/(auth)" />;
@@ -44,8 +46,7 @@ export default function RootLayout() {
   return (
     <LiveStoreProvider
       schema={schema}
-      storeId={synced ? "a" : undefined}
-      // renderLoading={(_) => <Text>Loading LiveStore ({_.stage})...</Text>}
+      storeId={syncWithWorkshop ? EXPO_CLUB_STORE_ID : user.id}
       renderLoading={(_) => <></>}
       renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
       renderShutdown={() => {
@@ -57,14 +58,7 @@ export default function RootLayout() {
         );
       }}
       boot={(store) => {
-        if (store.query(tables.todos.count()) === 0) {
-          store.commit(
-            events.todoCreated({
-              id: nanoid(),
-              text: "🎥 Subscribe to @codewithbeto",
-            })
-          );
-        }
+        if (syncWithWorkshop) return;
 
         if (store.query(tables.note.count()) === 0) {
           store.commit(
@@ -72,7 +66,7 @@ export default function RootLayout() {
               id: nanoid(),
               title: "My first note",
               content: "Hello, world!",
-              createdBy: "beto",
+              createdBy: user.id,
             })
           );
         }
@@ -96,8 +90,8 @@ export default function RootLayout() {
               return (
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Switch
-                    value={synced}
-                    onValueChange={() => setSynced(!synced)}
+                    value={syncWithWorkshop}
+                    onValueChange={() => setSyncWithWorkshop(!syncWithWorkshop)}
                   />
                 </View>
               );
@@ -113,7 +107,7 @@ export default function RootLayout() {
                         id,
                         title: "",
                         content: "",
-                        createdBy: "beto",
+                        createdBy: user.id,
                       })
                     );
                     router.push({

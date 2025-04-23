@@ -1,9 +1,11 @@
+import { use } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useStore } from "@livestore/react";
 import { events, tables } from "@workshop/shared/schema";
 import { nanoid, queryDb } from "@livestore/livestore";
 import { useRouter } from "expo-router";
+import { AuthContext } from "../../../context/auth";
 
 const reactions = ["👍", "❤️", "🔥", "🚀", "💡", "✨"];
 
@@ -11,6 +13,7 @@ export default function ReactionScreen() {
   const { store } = useStore();
   const router = useRouter();
   const { note: noteId } = useLocalSearchParams() as { note: string };
+  const { user } = use(AuthContext);
 
   const note = store.useQuery(
     queryDb(tables.note.where({ id: noteId }).first(), { label: "noteById" })
@@ -23,7 +26,7 @@ export default function ReactionScreen() {
         noteId: noteId,
         emoji: emoji,
         type: type,
-        createdBy: "beto",
+        createdBy: user!.id,
       })
     );
     router.back();
