@@ -11,7 +11,7 @@ function Index() {
 
   return (
     <>
-      <h1>Notes</h1>
+      <h1 className="text-2xl font-bold">Notes</h1>
       <ul className="todo-list">
         {visibleNotes.map((note) => (
           <li key={note.id} style={{ display: "flex", gap: "10px" }}>
