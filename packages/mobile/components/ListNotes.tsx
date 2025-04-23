@@ -41,7 +41,6 @@ export const ListNotes: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 16,
     backgroundColor: "#F2F2F7",
   },
