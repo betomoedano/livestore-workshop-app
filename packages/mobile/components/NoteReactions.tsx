@@ -1,8 +1,16 @@
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
+import { useRouter } from "expo-router";
 import { useQuery } from "@livestore/react";
 import { noteReactions$ } from "@workshop/shared/queries";
-import { Reaction } from "@workshop/shared/schema";
-import { useRouter } from "expo-router";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { noteReactionsStyles } from "@workshop/shared/styles/note-reactions";
+import { groupReactionsByEmoji } from "@workshop/shared/utils/group-reactions";
 
 export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const router = useRouter();
@@ -10,29 +18,8 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const superReactions = useQuery(noteReactions$(noteId, "super"));
 
   // Group reactions by emoji and count them
-  const reactionCounts = regularReactions.reduce(
-    (acc: Record<string, number>, reaction: Reaction) => {
-      const { emoji } = reaction;
-      if (!acc[emoji]) {
-        acc[emoji] = 0;
-      }
-      acc[emoji]++;
-      return acc;
-    },
-    {} as Record<string, number>
-  );
-
-  const superReactionCounts = superReactions.reduce(
-    (acc: Record<string, number>, reaction: Reaction) => {
-      const { emoji } = reaction;
-      if (!acc[emoji]) {
-        acc[emoji] = 0;
-      }
-      acc[emoji]++;
-      return acc;
-    },
-    {} as Record<string, number>
-  );
+  const reactionCounts = groupReactionsByEmoji(regularReactions);
+  const superReactionCounts = groupReactionsByEmoji(superReactions);
 
   if (regularReactions.length === 0 && superReactions.length === 0) {
     return null;
@@ -47,11 +34,11 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
           marginVertical: 12,
         }}
       />
-      <View style={styles.container}>
+      <View style={noteReactionsStyles.container as ViewStyle}>
         {Object.entries(reactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
-            style={styles.reactionButton}
+            style={noteReactionsStyles.reactionButton as ViewStyle}
             onPress={() =>
               router.push({
                 pathname: "/reaction/[note]",
@@ -59,16 +46,23 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
               })
             }
           >
-            <Text style={styles.emojiText}>{emoji}</Text>
+            <Text style={noteReactionsStyles.emojiText as TextStyle}>
+              {emoji}
+            </Text>
             {(count as number) > 1 && (
-              <Text style={styles.regularCountText}>{count as number}</Text>
+              <Text style={noteReactionsStyles.regularCountText as TextStyle}>
+                {count as number}
+              </Text>
             )}
           </Pressable>
         ))}
         {Object.entries(superReactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
-            style={[styles.reactionButton, styles.superReactionButton]}
+            style={[
+              noteReactionsStyles.reactionButton,
+              noteReactionsStyles.superReactionButton,
+            ]}
             onPress={() =>
               router.push({
                 pathname: "/reaction/[note]",
@@ -76,9 +70,13 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
               })
             }
           >
-            <Text style={styles.emojiText}>{emoji}</Text>
+            <Text style={noteReactionsStyles.emojiText as TextStyle}>
+              {emoji}
+            </Text>
             {(count as number) > 1 && (
-              <Text style={styles.superCountText}>{count as number}</Text>
+              <Text style={noteReactionsStyles.superCountText as TextStyle}>
+                {count as number}
+              </Text>
             )}
           </Pressable>
         ))}
@@ -86,63 +84,3 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: 14,
-  },
-  reactionButton: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    backgroundColor: "#f3f4f6",
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  superReactionButton: {
-    backgroundColor: "#007AFF",
-  },
-  emojiText: {
-    fontSize: 20,
-    // marginRight: 4,
-    fontVariant: ["tabular-nums"],
-  },
-  countText: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#6b7280",
-  },
-  superCountText: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "white",
-    position: "absolute",
-    right: -10,
-    top: -10,
-    backgroundColor: "#007AFF",
-    borderWidth: 1,
-    borderColor: "white",
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    textAlign: "center",
-  },
-  regularCountText: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "white",
-    position: "absolute",
-    right: -10,
-    top: -10,
-    backgroundColor: "#6b7280",
-    borderWidth: 1,
-    borderColor: "white",
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    textAlign: "center",
-  },
-});
