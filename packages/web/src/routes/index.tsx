@@ -56,7 +56,6 @@ function Index() {
         >
           Expo Club
         </button>
-        {storeId}
       </div>
       <LiveStoreProvider
         schema={schema}
