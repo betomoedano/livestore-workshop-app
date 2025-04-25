@@ -1,6 +1,10 @@
-import { useQuery } from "@livestore/react";
-import { noteReactions$, visibleNotes$ } from "@workshop/shared/queries";
+import { use } from "react";
+import { AuthContext } from "../context/auth";
+import { nanoid } from "@livestore/utils/nanoid";
+import { useQuery, useStore } from "@livestore/react";
+import { events } from "@workshop/shared/schema";
 import { noteItemStyles } from "@workshop/shared/styles/note-item";
+import { noteReactions$, visibleNotes$ } from "@workshop/shared/queries";
 import { noteReactionsStyles } from "@workshop/shared/styles/note-reactions";
 import { groupReactionsByEmoji } from "@workshop/shared/utils/group-reactions";
 
@@ -49,6 +53,8 @@ export const NotesList = () => {
 };
 
 function NoteReactions({ noteId }: { noteId: string }) {
+  const { store } = useStore();
+  const { user } = use(AuthContext);
   const regularReactions = useQuery(noteReactions$(noteId, "regular"));
   const superReactions = useQuery(noteReactions$(noteId, "super"));
 
@@ -60,39 +66,17 @@ function NoteReactions({ noteId }: { noteId: string }) {
     return null;
   }
 
-  // Common styles abstracted
-  const dividerStyle = {
-    borderBottomWidth: "1px",
-    borderColor: "lightgray",
-    marginTop: "12px",
-    marginBottom: "12px",
-  };
-
-  const containerStyle = {
-    ...noteReactionsStyles.container,
-    display: "flex",
-    flexDirection: "row" as const,
-    flexWrap: "wrap" as const,
-  };
-
-  const baseButtonStyle = {
-    ...noteReactionsStyles.reactionButton,
-    flexDirection: "row" as const,
-    position: "relative" as const,
-    padding: "4px 10px",
-  };
-
-  const emojiStyle = {
-    fontSize: noteReactionsStyles.emojiText.fontSize,
-  };
-
-  const baseCountStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute" as const,
-    textAlign: "center" as const,
-  };
+  function handleReaction(emoji: string, type: "regular" | "super") {
+    store.commit(
+      events.noteReacted({
+        id: nanoid(),
+        noteId: noteId,
+        emoji: emoji,
+        type: type,
+        createdBy: user!.name,
+      })
+    );
+  }
 
   return (
     <div>
@@ -102,9 +86,7 @@ function NoteReactions({ noteId }: { noteId: string }) {
           <button
             key={emoji}
             style={baseButtonStyle}
-            onClick={() => {
-              window.location.href = `/reaction/${noteId}`;
-            }}
+            onClick={() => handleReaction(emoji, "regular")}
           >
             <span style={emojiStyle}>{emoji}</span>
             {count > 1 && (
@@ -126,9 +108,7 @@ function NoteReactions({ noteId }: { noteId: string }) {
               ...baseButtonStyle,
               ...noteReactionsStyles.superReactionButton,
             }}
-            onClick={() => {
-              window.location.href = `/reaction/${noteId}`;
-            }}
+            onClick={() => handleReaction(emoji, "super")}
           >
             <span style={emojiStyle}>{emoji}</span>
             {count > 1 && (
@@ -147,3 +127,37 @@ function NoteReactions({ noteId }: { noteId: string }) {
     </div>
   );
 }
+
+// Common styles abstracted
+const dividerStyle = {
+  borderBottomWidth: "1px",
+  borderColor: "lightgray",
+  marginTop: "12px",
+  marginBottom: "12px",
+};
+
+const containerStyle = {
+  ...noteReactionsStyles.container,
+  display: "flex",
+  flexDirection: "row" as const,
+  flexWrap: "wrap" as const,
+};
+
+const baseButtonStyle = {
+  ...noteReactionsStyles.reactionButton,
+  flexDirection: "row" as const,
+  position: "relative" as const,
+  padding: "4px 10px",
+};
+
+const emojiStyle = {
+  fontSize: noteReactionsStyles.emojiText.fontSize,
+};
+
+const baseCountStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "absolute" as const,
+  textAlign: "center" as const,
+};
