@@ -1,49 +1,38 @@
-import { queryDb } from "@livestore/livestore";
 import { useQuery } from "@livestore/react";
-import { tables } from "@workshop/shared/schema";
+import { noteReactions$ } from "@workshop/shared/queries";
+import { Reaction } from "@workshop/shared/schema";
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const router = useRouter();
-  const regularReactions = useQuery(
-    queryDb(
-      tables.reaction.where({
-        noteId,
-        type: "regular",
-      }),
-      { label: "reactions" }
-    )
-  );
-
-  const superReactions = useQuery(
-    queryDb(
-      tables.reaction.where({
-        noteId,
-        type: "super",
-      }),
-      { label: "superReactions" }
-    )
-  );
+  const regularReactions = useQuery(noteReactions$(noteId, "regular"));
+  const superReactions = useQuery(noteReactions$(noteId, "super"));
 
   // Group reactions by emoji and count them
-  const reactionCounts = regularReactions.reduce((acc, reaction) => {
-    const { emoji } = reaction;
-    if (!acc[emoji]) {
-      acc[emoji] = 0;
-    }
-    acc[emoji]++;
-    return acc;
-  }, {} as Record<string, number>);
+  const reactionCounts = regularReactions.reduce(
+    (acc: Record<string, number>, reaction: Reaction) => {
+      const { emoji } = reaction;
+      if (!acc[emoji]) {
+        acc[emoji] = 0;
+      }
+      acc[emoji]++;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
-  const superReactionCounts = superReactions.reduce((acc, reaction) => {
-    const { emoji } = reaction;
-    if (!acc[emoji]) {
-      acc[emoji] = 0;
-    }
-    acc[emoji]++;
-    return acc;
-  }, {} as Record<string, number>);
+  const superReactionCounts = superReactions.reduce(
+    (acc: Record<string, number>, reaction: Reaction) => {
+      const { emoji } = reaction;
+      if (!acc[emoji]) {
+        acc[emoji] = 0;
+      }
+      acc[emoji]++;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
   if (regularReactions.length === 0 && superReactions.length === 0) {
     return null;
@@ -71,7 +60,9 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             }
           >
             <Text style={styles.emojiText}>{emoji}</Text>
-            {count > 1 && <Text style={styles.regularCountText}>{count}</Text>}
+            {(count as number) > 1 && (
+              <Text style={styles.regularCountText}>{count as number}</Text>
+            )}
           </Pressable>
         ))}
         {Object.entries(superReactionCounts).map(([emoji, count]) => (
@@ -86,7 +77,9 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             }
           >
             <Text style={styles.emojiText}>{emoji}</Text>
-            {count > 1 && <Text style={styles.superCountText}>{count}</Text>}
+            {(count as number) > 1 && (
+              <Text style={styles.superCountText}>{count as number}</Text>
+            )}
           </Pressable>
         ))}
       </View>

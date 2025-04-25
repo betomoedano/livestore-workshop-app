@@ -10,6 +10,7 @@ import { events, schema, tables } from "@workshop/shared/schema.ts";
 import { unstable_batchedUpdates } from "react-dom";
 import { NotesList } from "../components/NotesList.tsx";
 import { nanoid } from "@livestore/livestore";
+
 const EXPO_CLUB_STORE_ID = "expo-club";
 
 export const Route = createFileRoute("/")({
@@ -33,6 +34,8 @@ function Index() {
   const { user } = use(AuthContext);
   const [storeId, setStoreId] = useState<string>(user!.id);
 
+  if (!user) return null;
+
   return (
     <div className="p-2">
       <h1 className="text-2xl font-bold">Welcome, {user?.name}!</h1>
@@ -41,7 +44,7 @@ function Index() {
           className={`py-2 px-4 font-medium text-gray-500 hover:text-blue-600 ${
             storeId === user!.id ? "border-b-2 border-blue-600" : ""
           }`}
-          onClick={() => setStoreId(user!.id)}
+          onClick={() => setStoreId(user.id)}
         >
           My store
         </button>
@@ -63,7 +66,10 @@ function Index() {
         renderLoading={({ stage }) => <div>Loading... {stage}</div>}
         renderShutdown={() => <div>Shutting down...</div>}
         boot={(store) => {
-          if (storeId === EXPO_CLUB_STORE_ID) return;
+          if (storeId === EXPO_CLUB_STORE_ID) {
+            console.log("Skipping boot for Expo Club");
+            return;
+          }
 
           if (store.query(tables.note.count()) === 0) {
             store.commit(
@@ -75,6 +81,7 @@ function Index() {
               })
             );
           }
+          console.log("Booting");
         }}
         syncPayload={{
           authToken:

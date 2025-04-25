@@ -20,7 +20,7 @@
     "@livestore/utils": "0.3.0-dev.32",
     "@workshop/shared": "workspace:*",
     "babel-preset-expo": "13.0.0",
-    "expo": "53.0.0-preview.10",
+    "expo": "53.0.0-preview.11",
     "expo-asset": "11.1.2",
     "expo-constants": "~17.1.1",
     "expo-crypto": "14.1.2",

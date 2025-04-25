@@ -5,10 +5,17 @@ import { tables } from "./schema.ts";
 export const app$ = queryDb(tables.uiState.get(), { label: "app" });
 
 export const visibleNotes$ = queryDb(
-  (get) => {
-    return tables.note.where({
-      deletedAt: null,
-    });
-  },
+  tables.note.where({
+    deletedAt: null,
+  }),
   { label: "visibleNotes" }
 );
+
+export const noteReactions$ = (noteId: string, type: "regular" | "super") =>
+  queryDb(
+    tables.reaction.where({
+      noteId,
+      type,
+    }),
+    { label: `reactions-${noteId}-${type}` }
+  );
