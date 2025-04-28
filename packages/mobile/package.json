@@ -18,6 +18,7 @@
     "@livestore/react": "0.3.0-dev.32",
     "@livestore/sync-cf": "0.3.0-dev.32",
     "@livestore/utils": "0.3.0-dev.32",
+    "@react-native-async-storage/async-storage": "2.1.2",
     "@workshop/shared": "workspace:*",
     "babel-preset-expo": "13.0.0",
     "expo": "53.0.0-preview.11",
