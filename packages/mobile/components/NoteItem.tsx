@@ -44,9 +44,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
           {content || "No content"}
         </Text>
 
-        <Pressable onPress={handleDeleteNote}>
+        {/* <Pressable onPress={handleDeleteNote}>
           <Text>Delete</Text>
-        </Pressable>
+        </Pressable> */}
         <NoteReactions noteId={id} />
       </View>
     </Link>

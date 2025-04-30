@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -16,6 +16,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { events } from "@workshop/shared/schema";
 import { nanoid } from "@livestore/livestore";
 import { AuthContext } from "../context/auth";
+import { ReactionParticles } from "./ReactionParticles";
+
+const reactionColors = ["#FF7E7E", "#7EB3FF", "#8FD28F", "#FFE07E", "#D7A0FF"];
 
 export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const { store } = useStore();
@@ -23,11 +26,20 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const router = useRouter();
   const regularReactions = useQuery(noteReactions$(noteId, "regular"));
   const superReactions = useQuery(noteReactions$(noteId, "super"));
+  const [activeParticleEmoji, setActiveParticleEmoji] = useState<string | null>(
+    null
+  );
 
   // Group reactions by emoji and count them
   const reactionCounts = groupReactionsByEmoji(regularReactions);
   const superReactionCounts = groupReactionsByEmoji(superReactions);
 
+  function handleShowParticles(emoji: string) {
+    setActiveParticleEmoji(emoji);
+    setTimeout(() => {
+      setActiveParticleEmoji(null);
+    }, 1000);
+  }
   return (
     <View style={{ width: "100%" }}>
       <View
@@ -54,7 +66,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
           <Pressable
             key={emoji}
             style={noteReactionsStyles.reactionButton as ViewStyle}
-            onLongPress={() => alert("Super Reacted")}
+            onLongPress={() => handleShowParticles(emoji)}
             onPress={() =>
               store.commit(
                 events.noteReacted({
@@ -80,16 +92,25 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 {count as number}
               </Text>
             )}
+            {activeParticleEmoji === emoji && (
+              <ReactionParticles
+                color={
+                  reactionColors[
+                    Math.floor(Math.random() * reactionColors.length)
+                  ]
+                }
+              />
+            )}
           </Pressable>
         ))}
-        {Object.entries(superReactionCounts).map(([emoji, count]) => (
+        {/* {Object.entries(superReactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
             style={[
               noteReactionsStyles.reactionButton,
               noteReactionsStyles.superReactionButton,
             ]}
-            onLongPress={() => alert("Super Reacted")}
+            onLongPress={() => handleShowParticles(emoji)}
             onPress={() =>
               store.commit(
                 events.noteReacted({
@@ -110,8 +131,15 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 {count as number}
               </Text>
             )}
+            {activeParticleEmoji === emoji && (
+              <ReactionParticles
+                color={
+                  reactionColors[Math.floor(Math.random() * reactionColors.length)]
+                }
+              />
+            )}
           </Pressable>
-        ))}
+        ))} */}
       </View>
     </View>
   );
