@@ -1,5 +1,8 @@
 const { getDefaultConfig } = require("expo/metro-config");
 const { addLiveStoreDevtoolsMiddleware } = require("@livestore/devtools-expo");
+const {
+  wrapWithReanimatedMetroConfig,
+} = require("react-native-reanimated/metro-config");
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
@@ -27,4 +30,4 @@ if (!process.env.CI && process.stdout.isTTY) {
   });
 }
 
-module.exports = config;
+module.exports = wrapWithReanimatedMetroConfig(config);

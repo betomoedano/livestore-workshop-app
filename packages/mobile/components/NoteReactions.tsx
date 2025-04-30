@@ -1,3 +1,4 @@
+import { use } from "react";
 import {
   View,
   Text,
@@ -7,12 +8,18 @@ import {
   TextStyle,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useQuery } from "@livestore/react";
+import { useQuery, useStore } from "@livestore/react";
 import { noteReactions$ } from "@workshop/shared/queries";
 import { noteReactionsStyles } from "@workshop/shared/styles/note-reactions";
 import { groupReactionsByEmoji } from "@workshop/shared/utils/group-reactions";
+import { Ionicons } from "@expo/vector-icons";
+import { events } from "@workshop/shared/schema";
+import { nanoid } from "@livestore/livestore";
+import { AuthContext } from "../context/auth";
 
 export const NoteReactions = ({ noteId }: { noteId: string }) => {
+  const { store } = useStore();
+  const { user } = use(AuthContext);
   const router = useRouter();
   const regularReactions = useQuery(noteReactions$(noteId, "regular"));
   const superReactions = useQuery(noteReactions$(noteId, "super"));
@@ -20,10 +27,6 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
   // Group reactions by emoji and count them
   const reactionCounts = groupReactionsByEmoji(regularReactions);
   const superReactionCounts = groupReactionsByEmoji(superReactions);
-
-  if (regularReactions.length === 0 && superReactions.length === 0) {
-    return null;
-  }
 
   return (
     <View style={{ width: "100%" }}>
@@ -35,20 +38,43 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
         }}
       />
       <View style={noteReactionsStyles.container as ViewStyle}>
+        <Pressable
+          style={noteReactionsStyles.reactionButton as ViewStyle}
+          onPress={() =>
+            router.push({
+              pathname: "/reaction/[note]",
+              params: { note: noteId },
+            })
+          }
+        >
+          <Ionicons name="happy-outline" size={24} color="gray" />
+        </Pressable>
+
         {Object.entries(reactionCounts).map(([emoji, count]) => (
           <Pressable
             key={emoji}
             style={noteReactionsStyles.reactionButton as ViewStyle}
+            onLongPress={() => alert("Super Reacted")}
             onPress={() =>
-              router.push({
-                pathname: "/reaction/[note]",
-                params: { note: noteId },
-              })
+              store.commit(
+                events.noteReacted({
+                  id: nanoid(),
+                  noteId,
+                  emoji,
+                  type: "regular",
+                  createdBy: user!.name,
+                })
+              )
             }
           >
             <Text style={noteReactionsStyles.emojiText as TextStyle}>
               {emoji}
             </Text>
+            {(count as number) > 1 && (
+              <Text style={noteReactionsStyles.regularCountText as TextStyle}>
+                {count as number}
+              </Text>
+            )}
             {(count as number) > 1 && (
               <Text style={noteReactionsStyles.regularCountText as TextStyle}>
                 {count as number}
@@ -63,11 +89,17 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
               noteReactionsStyles.reactionButton,
               noteReactionsStyles.superReactionButton,
             ]}
+            onLongPress={() => alert("Super Reacted")}
             onPress={() =>
-              router.push({
-                pathname: "/reaction/[note]",
-                params: { note: noteId },
-              })
+              store.commit(
+                events.noteReacted({
+                  id: nanoid(),
+                  noteId,
+                  emoji,
+                  type: "super",
+                  createdBy: user!.name,
+                })
+              )
             }
           >
             <Text style={noteReactionsStyles.emojiText as TextStyle}>
