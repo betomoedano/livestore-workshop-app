@@ -17,18 +17,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { events, schema, tables } from "@workshop/shared/schema";
 import { makeCfSync } from "@livestore/sync-cf";
 import { AuthContext } from "../../context/auth.tsx";
+import { loadEnvironment } from "../../utils/load-environment.ts";
 
 // Hardcoded token for testing - valid for 24 hours
 const TEST_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E";
 
-const syncUrl = Platform.select({
-  default: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL,
-  android: process.env.EXPO_PUBLIC_LIVESTORE_SYNC_URL_ANDROID_LOCAL, // https://developer.android.com/studio/run/emulator-networking#networkaddresses
-});
-
 const adapter = makePersistedAdapter({
-  sync: { backend: makeCfSync({ url: syncUrl! }) },
+  sync: { backend: makeCfSync({ url: loadEnvironment() }) },
 });
 
 const EXPO_CLUB_STORE_ID = "expo-club";
