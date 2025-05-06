@@ -10,7 +10,6 @@ import {
   View,
   Switch,
   Pressable,
-  Platform,
 } from "react-native";
 import { Redirect, Stack, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";

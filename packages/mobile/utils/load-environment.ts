@@ -20,5 +20,6 @@ export function loadEnvironment() {
     });
   }
 
+  console.log("env", env);
   return env;
 }
