@@ -12,6 +12,8 @@ import { NotesList } from "../components/NotesList.tsx";
 import { NoteInput } from "../components/NoteInput.tsx";
 
 const storeId = import.meta.env.VITE_LIVESTORE_SYNC_URL.split("://")[0]; // http or https
+const TEST_TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30";
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
@@ -59,10 +61,7 @@ function Index() {
         //   }
         //   console.log("Booting");
         // }}
-        syncPayload={{
-          authToken:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZXRvIiwiaWF0IjoxNzEzMjQ5NjAwLCJleHAiOjE3MTMzMzYwMDB9.4Adcj3UFYcPpxga7Cp6AnuRwhk9xU3j3ZbXBp7fYH7E",
-        }}
+        syncPayload={{ authToken: TEST_TOKEN }}
       >
         <NoteInput />
         <NotesList />
