@@ -22,18 +22,25 @@ export default makeWorker({
     }
 
     const user = await getUserFromToken(authToken);
-    console.log("Sync backend payload", JSON.stringify(user, null, 2));
 
-    if (payload.exp && payload.exp < Date.now() / 1000) {
-      console.log("Token expired");
-      throw new Error("Token expired");
+    if (!user) {
+      throw new Error("Invalid auth token");
+    } else {
+      console.log("Sync backend payload", JSON.stringify(user, null, 2));
     }
-    console.log(authToken);
+
+    // TODO: check if token is expired
+    // if (payload.exp && payload.exp < Date.now() / 1000) {
+    //   console.log("Token expired");
+    //   throw new Error("Token expired");
+    // }
   },
   enableCORS: true,
 });
 
-async function getUserFromToken(token: string) {
+async function getUserFromToken(
+  token: string
+): Promise<jose.JWTPayload | undefined> {
   try {
     const { payload } = await jose.jwtVerify(
       token,
