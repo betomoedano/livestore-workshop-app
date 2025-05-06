@@ -8,7 +8,13 @@ import { events } from "@workshop/shared/schema";
 import { Link, router } from "expo-router";
 import { NoteReactions } from "./NoteReactions";
 
-export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
+export const Note: React.FC<INote> = ({
+  id,
+  title,
+  content,
+  createdBy,
+  createdAt,
+}) => {
   const { store } = useStore();
 
   const handleDeleteNote = () =>
@@ -42,6 +48,9 @@ export const Note: React.FC<INote> = ({ id, title, content, createdBy }) => {
         </Text>
         <Text style={noteItemStyles.content} numberOfLines={3}>
           {content || "No content"}
+        </Text>
+        <Text style={noteItemStyles.content}>
+          {`Created by ${createdBy || "Unknown"} - ${new Date(createdAt).toLocaleDateString()} ${new Date(createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`}
         </Text>
 
         {/* <Pressable onPress={handleDeleteNote}>
