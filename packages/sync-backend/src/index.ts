@@ -3,7 +3,6 @@ import * as jose from "jose";
 
 const JWT_SECRET = "a-string-secret-at-least-256-bits-long";
 
-// how can I count the number of todos a user has? so that I can trigger a push notification when the hit the limit?
 export class WebSocketServer extends makeDurableObject({
   onPush: async (message) => {
     console.log("onPush", message.batch);
@@ -22,22 +21,26 @@ export default makeWorker({
       throw new Error("No auth token provided");
     }
 
-    try {
-      const { payload } = await jose.jwtVerify(
-        authToken,
-        new TextEncoder().encode(JWT_SECRET)
-      );
-      console.log("Sync backend payload", JSON.stringify(payload, null, 2));
-      if (payload.exp && payload.exp < Date.now() / 1000) {
-        console.log("Token expired");
-        throw new Error("Token expired");
-      }
-      console.log(authToken);
-    } catch (error) {
-      console.log("Error verifying token", error);
-      return;
-      throw new Error("Invalid auth token");
+    const user = await getUserFromToken(authToken);
+    console.log("Sync backend payload", JSON.stringify(user, null, 2));
+
+    if (payload.exp && payload.exp < Date.now() / 1000) {
+      console.log("Token expired");
+      throw new Error("Token expired");
     }
+    console.log(authToken);
   },
   enableCORS: true,
 });
+
+async function getUserFromToken(token: string) {
+  try {
+    const { payload } = await jose.jwtVerify(
+      token,
+      new TextEncoder().encode(JWT_SECRET)
+    );
+    return payload;
+  } catch (error) {
+    console.log("⚠️ Error verifying token", error);
+  }
+}
