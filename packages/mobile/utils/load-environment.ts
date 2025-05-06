@@ -13,7 +13,7 @@ export function loadEnvironment() {
     );
   }
 
-  if (env.startsWith("ws://")) {
+  if (env.startsWith("http://")) {
     return Platform.select({
       default: env,
       android: env.replace("localhost", "10.0.2.2"),

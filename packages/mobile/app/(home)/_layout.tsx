@@ -8,7 +8,6 @@ import {
   Text,
   unstable_batchedUpdates as batchUpdates,
   View,
-  Switch,
   Pressable,
 } from "react-native";
 import { Redirect, Stack, useRouter } from "expo-router";
@@ -26,13 +25,12 @@ const adapter = makePersistedAdapter({
   sync: { backend: makeCfSync({ url: loadEnvironment() }) },
 });
 
-const EXPO_CLUB_STORE_ID = "expo-club";
+const storeId = loadEnvironment().split("://")[0]; // ws
 
 export default function RootLayout() {
   const { user } = use(AuthContext);
   const [, rerender] = React.useState({});
   const router = useRouter();
-  const [syncWithWorkshop, setSyncWithWorkshop] = React.useState(false);
 
   if (!user) {
     return <Redirect href="/(auth)" />;
@@ -41,7 +39,7 @@ export default function RootLayout() {
   return (
     <LiveStoreProvider
       schema={schema}
-      storeId={syncWithWorkshop ? EXPO_CLUB_STORE_ID : user.id}
+      storeId={storeId}
       renderLoading={(_) => <></>}
       renderError={(error: any) => <Text>Error: {error.toString()}</Text>}
       renderShutdown={() => {
@@ -53,15 +51,14 @@ export default function RootLayout() {
         );
       }}
       boot={(store) => {
-        if (syncWithWorkshop) return;
-
         if (store.query(tables.note.count()) === 0) {
           store.commit(
             events.noteCreated({
               id: nanoid(),
-              title: "My first note",
-              content: "Hello, world!",
-              createdBy: user.name,
+              title: "Welcome to Expo",
+              content:
+                "The best way to build mobile apps. Powered by LiveStore.",
+              createdBy: "The Expo Team",
             })
           );
         }
@@ -81,16 +78,6 @@ export default function RootLayout() {
               backgroundColor: "#F2F2F7",
             },
             headerShadowVisible: false,
-            headerLeft: () => {
-              return (
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Switch
-                    value={syncWithWorkshop}
-                    onValueChange={() => setSyncWithWorkshop(!syncWithWorkshop)}
-                  />
-                </View>
-              );
-            },
             headerRight: ({ tintColor }) => {
               const { store } = useStore();
               return (

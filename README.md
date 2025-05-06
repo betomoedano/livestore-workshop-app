@@ -43,7 +43,7 @@ This project is organized as a monorepo using npm workspaces with the following 
    Then edit the `.env.local` file to set your sync server URL:
 
    ```
-   EXPO_PUBLIC_LIVESTORE_SYNC_URL=ws://localhost:8787
+   EXPO_PUBLIC_LIVESTORE_SYNC_URL=http://localhost:8787
    ```
 
 4. Set up the Cloudflare D1 database for the sync backend: (OPTIONAL - You can do this in localhost)
