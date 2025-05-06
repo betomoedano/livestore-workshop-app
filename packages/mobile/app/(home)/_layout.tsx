@@ -35,6 +35,7 @@ export default function RootLayout() {
   if (!user) {
     return <Redirect href="/(auth)" />;
   }
+  console.log("user", user.jwt);
 
   return (
     <LiveStoreProvider
@@ -66,7 +67,7 @@ export default function RootLayout() {
       adapter={adapter}
       batchUpdates={batchUpdates}
       syncPayload={{
-        authToken: TEST_TOKEN,
+        authToken: user.jwt,
       }}
     >
       <Stack>

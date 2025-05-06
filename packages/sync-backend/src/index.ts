@@ -30,10 +30,10 @@ export default makeWorker({
     }
 
     // TODO: check if token is expired
-    // if (payload.exp && payload.exp < Date.now() / 1000) {
-    //   console.log("Token expired");
-    //   throw new Error("Token expired");
-    // }
+    if (payload.exp && payload.exp < Date.now() / 1000) {
+      console.log("Token expired");
+      throw new Error("Token expired");
+    }
   },
   enableCORS: true,
 });

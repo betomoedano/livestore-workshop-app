@@ -17,6 +17,7 @@ import { events } from "@workshop/shared/schema";
 import { nanoid } from "@livestore/livestore";
 import { AuthContext } from "../context/auth";
 import { ReactionParticles } from "./ReactionParticles";
+import * as Haptics from "expo-haptics";
 
 const reactionColors = ["#FF7E7E", "#7EB3FF", "#8FD28F", "#FFE07E", "#D7A0FF"];
 
@@ -66,8 +67,21 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
           <Pressable
             key={emoji}
             style={noteReactionsStyles.reactionButton as ViewStyle}
-            onLongPress={() => handleShowParticles(emoji)}
-            onPress={() =>
+            onLongPress={() => {
+              handleShowParticles(emoji);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+              store.commit(
+                events.noteReacted({
+                  id: nanoid(),
+                  noteId,
+                  emoji,
+                  type: "super",
+                  createdBy: user!.name,
+                })
+              );
+            }}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               store.commit(
                 events.noteReacted({
                   id: nanoid(),
@@ -76,8 +90,8 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                   type: "regular",
                   createdBy: user!.name,
                 })
-              )
-            }
+              );
+            }}
           >
             <Text style={noteReactionsStyles.emojiText as TextStyle}>
               {emoji}
@@ -92,6 +106,17 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 {count as number}
               </Text>
             )}
+            {superReactionCounts[emoji] &&
+              (superReactionCounts[emoji] as number) > 0 && (
+                <Text
+                  style={[
+                    noteReactionsStyles.superCountText as TextStyle,
+                    { top: 22, width: 25 },
+                  ]}
+                >
+                  +{superReactionCounts[emoji] as number}
+                </Text>
+              )}
             {activeParticleEmoji === emoji && (
               <ReactionParticles
                 color={

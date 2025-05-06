@@ -3,9 +3,13 @@ import { nanoid } from "@livestore/livestore";
 import { useRouter } from "expo-router";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import JWT, { SupportedAlgorithms } from "expo-jwt";
+
+const JWT_SECRET = "a-string-secret-at-least-256-bits-long";
 interface User {
   id: string;
   name: string;
+  jwt: string;
 }
 
 export const AuthContext = createContext<{
@@ -35,15 +39,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     const id = nanoid();
+    const payload = {
+      sub: id,
+      iat: Math.floor(Date.now() / 1000),
+      exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 hours
+      name,
+    };
+    const jwt = JWT.encode(payload, JWT_SECRET, {
+      algorithm: SupportedAlgorithms.HS256,
+    });
+
     setUser({
       id,
       name,
+      jwt,
     });
+
     await AsyncStorage.setItem(
       "@user",
       JSON.stringify({
         id,
         name,
+        jwt,
       })
     );
     console.log("Signing in", user);
