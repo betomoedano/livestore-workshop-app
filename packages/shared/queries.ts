@@ -5,9 +5,11 @@ import { tables } from "./schema.ts";
 export const app$ = queryDb(tables.uiState.get(), { label: "app" });
 
 export const visibleNotes$ = queryDb(
-  tables.note.where({
-    deletedAt: null,
-  }),
+  tables.note
+    .where({
+      deletedAt: null,
+    })
+    .orderBy("createdAt", "desc"),
   { label: "visibleNotes" }
 );
 

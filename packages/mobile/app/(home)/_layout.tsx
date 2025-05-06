@@ -50,19 +50,19 @@ export default function RootLayout() {
           </View>
         );
       }}
-      boot={(store) => {
-        if (store.query(tables.note.count()) === 0) {
-          store.commit(
-            events.noteCreated({
-              id: nanoid(),
-              title: "Welcome to Expo",
-              content:
-                "The best way to build mobile apps. Powered by LiveStore.",
-              createdBy: "The Expo Team",
-            })
-          );
-        }
-      }}
+      // boot={(store) => {
+      //   if (store.query(tables.note.count()) === 0) {
+      //     store.commit(
+      //       events.noteCreated({
+      //         id: nanoid(),
+      //         title: "Welcome to Expo",
+      //         content:
+      //           "The best way to build mobile apps. Powered by LiveStore.",
+      //         createdBy: "The Expo Team",
+      //       })
+      //     );
+      //   }
+      // }}
       adapter={adapter}
       batchUpdates={batchUpdates}
       syncPayload={{

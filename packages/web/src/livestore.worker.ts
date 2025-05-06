@@ -3,10 +3,7 @@ import { makeCfSync } from "@livestore/sync-cf";
 
 import { schema } from "@workshop/shared/schema";
 
-const url =
-  import.meta.env.MODE === "development"
-    ? import.meta.env.VITE_LIVESTORE_SYNC_URL_DEV
-    : import.meta.env.VITE_LIVESTORE_SYNC_URL;
+const url = import.meta.env.VITE_LIVESTORE_SYNC_URL;
 
 makeWorker({
   schema,

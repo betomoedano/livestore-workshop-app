@@ -45,6 +45,14 @@ export const NotesList = () => {
           >
             {note.content || "No content"}
           </p>
+          <p
+            style={{
+              ...noteItemStyles.content,
+              lineHeight: "1.5",
+            }}
+          >
+            {`Created by ${note.createdBy || "Unknown"} - ${new Date(note.createdAt).toLocaleDateString()} ${new Date(note.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`}
+          </p>
           <NoteReactions noteId={note.id} />
         </li>
       ))}
