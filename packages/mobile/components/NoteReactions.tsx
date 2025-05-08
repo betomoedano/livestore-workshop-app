@@ -97,12 +97,12 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
               {emoji}
             </Text>
             {(count as number) > 1 && (
-              <Text style={noteReactionsStyles.regularCountText as TextStyle}>
-                {count as number}
-              </Text>
-            )}
-            {(count as number) > 1 && (
-              <Text style={noteReactionsStyles.regularCountText as TextStyle}>
+              <Text
+                style={[
+                  noteReactionsStyles.regularCountText as TextStyle,
+                  { width: 25, left: 10 },
+                ]}
+              >
                 {count as number}
               </Text>
             )}
@@ -111,7 +111,8 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 <Text
                   style={[
                     noteReactionsStyles.superCountText as TextStyle,
-                    { top: 22, width: 25 },
+                    { width: 25, right: -12, backgroundColor: "orange" },
+                    // { top: 22, width: 25, backgroundColor: "orange" },
                   ]}
                 >
                   +{superReactionCounts[emoji] as number}
