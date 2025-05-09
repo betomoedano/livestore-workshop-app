@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useQuery, useStore } from "@livestore/react";
-import { noteReactions$ } from "@workshop/shared/queries";
+import { noteReactionCounts$, noteReactions$ } from "@workshop/shared/queries";
 import { noteReactionsStyles } from "@workshop/shared/styles/note-reactions";
 import { groupReactionsByEmoji } from "@workshop/shared/utils/group-reactions";
 import { Ionicons } from "@expo/vector-icons";
 import { events } from "@workshop/shared/schema";
-import { nanoid } from "@livestore/livestore";
+import { nanoid, queryDb, Schema, sql } from "@livestore/livestore";
 import { AuthContext } from "../context/auth";
 import { ReactionParticles } from "./ReactionParticles";
 import * as Haptics from "expo-haptics";
@@ -27,13 +27,32 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
   const router = useRouter();
   const regularReactions = useQuery(noteReactions$(noteId, "regular"));
   const superReactions = useQuery(noteReactions$(noteId, "super"));
+
+  const reactionCounts = useQuery(
+    queryDb(
+      {
+        query: sql`
+        SELECT emoji, COUNT(*) AS count
+        FROM reaction
+        WHERE noteId = '${noteId}' AND type = 'regular'
+        GROUP BY emoji
+      `,
+        schema: Schema.Array(
+          Schema.Struct({
+            emoji: Schema.String,
+            count: Schema.Number,
+          })
+        ),
+      },
+      { label: `reaction-counts-${noteId}`, deps: [noteId] }
+    )
+  );
+
+  // const superReactionCounts = useQuery(noteReactionCounts$(noteId, "super"));
+
   const [activeParticleEmoji, setActiveParticleEmoji] = useState<string | null>(
     null
   );
-
-  // Group reactions by emoji and count them
-  const reactionCounts = groupReactionsByEmoji(regularReactions);
-  const superReactionCounts = groupReactionsByEmoji(superReactions);
 
   function handleShowParticles(emoji: string) {
     setActiveParticleEmoji(emoji);
@@ -63,7 +82,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
           <Ionicons name="happy-outline" size={24} color="gray" />
         </Pressable>
 
-        {Object.entries(reactionCounts).map(([emoji, count]) => (
+        {reactionCounts.map(({ emoji, count }) => (
           <Pressable
             key={emoji}
             style={noteReactionsStyles.reactionButton as ViewStyle}
@@ -96,17 +115,17 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             <Text style={noteReactionsStyles.emojiText as TextStyle}>
               {emoji}
             </Text>
-            {(count as number) > 1 && (
+            {count > 1 && (
               <Text
                 style={[
                   noteReactionsStyles.regularCountText as TextStyle,
                   { width: 25, left: 10 },
                 ]}
               >
-                {count as number}
+                {count}
               </Text>
             )}
-            {superReactionCounts[emoji] &&
+            {/* {superReactionCounts[emoji] &&
               (superReactionCounts[emoji] as number) > 0 && (
                 <Text
                   style={[
@@ -117,7 +136,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 >
                   +{superReactionCounts[emoji] as number}
                 </Text>
-              )}
+              )} */}
             {activeParticleEmoji === emoji && (
               <ReactionParticles
                 color={
