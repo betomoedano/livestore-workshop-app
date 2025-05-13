@@ -92,7 +92,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
             <Text style={noteReactionsStyles.emojiText as TextStyle}>
               {emoji}
             </Text>
-            {regularCount > 1 && (
+            {regularCount > 0 && (
               <Text
                 style={[
                   noteReactionsStyles.regularCountText as TextStyle,
@@ -102,7 +102,7 @@ export const NoteReactions = ({ noteId }: { noteId: string }) => {
                 {regularCount}
               </Text>
             )}
-            {superCount > 1 && (
+            {superCount > 0 && (
               <Text
                 style={[
                   noteReactionsStyles.superCountText as TextStyle,

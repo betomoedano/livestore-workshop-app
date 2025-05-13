@@ -94,7 +94,7 @@ function NoteReactions({ noteId }: { noteId: string }) {
             onClick={() => handleReaction(emoji, "regular")}
           >
             <span style={emojiStyle}>{emoji}</span>
-            {regularCount > 1 && (
+            {regularCount > 0 && (
               <span
                 style={{
                   ...noteReactionsStyles.regularCountText,
@@ -105,7 +105,7 @@ function NoteReactions({ noteId }: { noteId: string }) {
                 {regularCount}
               </span>
             )}
-            {superCount > 1 && (
+            {superCount > 0 && (
               <span
                 style={{
                   ...noteReactionsStyles.superCountText,
