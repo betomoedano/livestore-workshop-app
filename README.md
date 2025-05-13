@@ -9,12 +9,12 @@ This project is organized as a monorepo using npm workspaces with the following 
 - `packages/web`: Web application
 - `packages/mobile`: Mobile application
 - `packages/sync-backend`: Backend service for data synchronization
+- `packages/shared`: Abstracted elements to share across packages, mostly types and LiveStore schema and queries
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (Latest LTS version recommended)
-- [Bun](https://bun.sh/) - Used as package manager and runtime
-- [Git](https://git-scm.com/) for version control
+- [pnpm](https://pnpm.io/) - Used as package manager and runtime
 
 ## Getting Started
 
@@ -28,12 +28,12 @@ This project is organized as a monorepo using npm workspaces with the following 
 2. Install dependencies:
 
    ```bash
-   bun install
+   pnpm install
    ```
 
 3. Configure environment variables:
 
-   For the mobile application, create a `.env.local` file in the `packages/mobile` directory:
+   For the mobile app, create a `.env.local` file in the `packages/mobile` directory:
 
    ```bash
    cd packages/mobile
@@ -44,6 +44,19 @@ This project is organized as a monorepo using npm workspaces with the following 
 
    ```
    EXPO_PUBLIC_LIVESTORE_SYNC_URL=http://localhost:8787
+   ```
+
+   For the web app, create a `.env.local` file in the `packages/web` directory:
+
+   ```bash
+   cd packages/web
+   cp .env.local.example .env.local
+   ```
+
+   Then edit the `.env.local` file to set your sync server URL:
+
+   ```
+   VITE_LIVESTORE_SYNC_URL=http://localhost:8787
    ```
 
 4. Set up the Cloudflare D1 database for the sync backend: (OPTIONAL - You can do this in localhost)
@@ -80,26 +93,19 @@ This project is organized as a monorepo using npm workspaces with the following 
 
    ```bash
    cd packages/web
-   bun run dev
+   pnpm run dev
    ```
 
    For the mobile application:
 
    ```bash
    cd packages/mobile
-   bun run start
+   pnpm run dev
    ```
 
    For the sync backend:
 
    ```bash
    cd packages/sync-backend
-   bun run dev
+   pnpm run dev
    ```
-
-## Development
-
-This project uses:
-
-- Bun as the package manager and runtime environment
-- bun workspaces for monorepo management
