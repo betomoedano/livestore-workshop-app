@@ -22,6 +22,30 @@ export const noteReactions$ = (noteId: string, type: "regular" | "super") =>
     { label: `reactions-${noteId}-${type}` }
   );
 
+export const noteReactionCountsByEmoji$ = (noteId: string) =>
+  queryDb(
+    {
+      query: sql`
+        SELECT
+          emoji,
+          SUM(CASE WHEN type = 'regular' THEN 1 ELSE 0 END) AS regularCount,
+          SUM(CASE WHEN type = 'super' THEN 1 ELSE 0 END) AS superCount
+        FROM reaction
+        WHERE noteId = ?
+        GROUP BY emoji
+      `,
+      schema: Schema.Array(
+        Schema.Struct({
+          emoji: Schema.String,
+          regularCount: Schema.Number,
+          superCount: Schema.Number,
+        })
+      ),
+      bindValues: [noteId],
+    },
+    { label: `reaction-counts-${noteId}`, deps: [noteId] }
+  );
+
 // returns rows like  { emoji: "🔥", count: 7 }
 export const noteReactionCounts$ = (
   noteId: string,
