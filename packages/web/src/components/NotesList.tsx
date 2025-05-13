@@ -4,9 +4,11 @@ import { nanoid } from "@livestore/utils/nanoid";
 import { useQuery, useStore } from "@livestore/react";
 import { events } from "@workshop/shared/schema";
 import { noteItemStyles } from "@workshop/shared/styles/note-item";
-import { noteReactions$, visibleNotes$ } from "@workshop/shared/queries";
+import {
+  noteReactionCountsByEmoji$,
+  visibleNotes$,
+} from "@workshop/shared/queries";
 import { noteReactionsStyles } from "@workshop/shared/styles/note-reactions";
-import { groupReactionsByEmoji } from "@workshop/shared/utils/group-reactions";
 
 export const NotesList = () => {
   const visibleNotes = useQuery(visibleNotes$);
@@ -63,14 +65,9 @@ export const NotesList = () => {
 function NoteReactions({ noteId }: { noteId: string }) {
   const { store } = useStore();
   const { user } = use(AuthContext);
-  const regularReactions = useQuery(noteReactions$(noteId, "regular"));
-  const superReactions = useQuery(noteReactions$(noteId, "super"));
+  const reactionCounts = useQuery(noteReactionCountsByEmoji$(noteId));
 
-  // Group reactions by emoji and count them
-  const reactionCounts = groupReactionsByEmoji(regularReactions);
-  const superReactionCounts = groupReactionsByEmoji(superReactions);
-
-  if (regularReactions.length === 0 && superReactions.length === 0) {
+  if (reactionCounts.length === 0) {
     return null;
   }
 
@@ -90,43 +87,32 @@ function NoteReactions({ noteId }: { noteId: string }) {
     <div>
       <div style={dividerStyle} />
       <div style={containerStyle}>
-        {Object.entries(reactionCounts).map(([emoji, count]) => (
+        {reactionCounts.map(({ emoji, regularCount, superCount }) => (
           <button
             key={emoji}
             style={baseButtonStyle}
             onClick={() => handleReaction(emoji, "regular")}
           >
             <span style={emojiStyle}>{emoji}</span>
-            {count > 1 && (
+            {regularCount > 1 && (
               <span
                 style={{
                   ...noteReactionsStyles.regularCountText,
                   ...baseCountStyle,
+                  right: "6px",
                 }}
               >
-                {count}
+                {regularCount}
               </span>
             )}
-          </button>
-        ))}
-        {Object.entries(superReactionCounts).map(([emoji, count]) => (
-          <button
-            key={emoji}
-            style={{
-              ...baseButtonStyle,
-              ...noteReactionsStyles.superReactionButton,
-            }}
-            onClick={() => handleReaction(emoji, "super")}
-          >
-            <span style={emojiStyle}>{emoji}</span>
-            {count > 1 && (
+            {superCount > 1 && (
               <span
                 style={{
                   ...noteReactionsStyles.superCountText,
                   ...baseCountStyle,
                 }}
               >
-                {count}
+                {superCount}
               </span>
             )}
           </button>

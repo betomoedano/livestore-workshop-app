@@ -32,7 +32,7 @@ export const noteReactionsStyles = {
     position: "absolute",
     right: -10,
     top: -10,
-    backgroundColor: "#007AFF",
+    backgroundColor: "orange",
     borderWidth: 1,
     borderColor: "white",
     minWidth: 20,
