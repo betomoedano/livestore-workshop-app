@@ -25,7 +25,7 @@ const adapter = makePersistedAdapter({
   sync: { backend: makeCfSync({ url: loadEnvironment() }) },
 });
 
-const storeId = loadEnvironment().split("://")[0]; // ws
+const storeId = loadEnvironment().split("://")[0]; // http or https
 
 export default function RootLayout() {
   const { user } = use(AuthContext);
@@ -35,7 +35,6 @@ export default function RootLayout() {
   if (!user) {
     return <Redirect href="/(auth)" />;
   }
-  console.log("user", user.jwt);
 
   return (
     <LiveStoreProvider

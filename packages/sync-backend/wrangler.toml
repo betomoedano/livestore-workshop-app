@@ -15,6 +15,10 @@ binding = "DB"
 database_name = "livestore-test"
 database_id = "fd58992d-e1fd-45a2-9e41-2f1bbe80f7ea"
 
+# Enable logs for observability (Optional, you can remove this section)
+[observability.logs]
+enabled = true
+
 [vars]
 # should be set via CF dashboard (as secret)
 # ADMIN_SECRET = "..."
