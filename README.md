@@ -2,6 +2,8 @@
 
 A modern monorepo project featuring a web application, mobile Expo app, and sync server for real-time data synchronization.
 
+Refer to [Local First Conf 2025 Workshop: Expo | Livestore](https://github.com/keith-kurak/expo-local-first-conf-2025-lessons/tree/main) to follow the workshop.
+
 ## Project Structure
 
 This project is organized as a monorepo using npm workspaces with the following packages:
