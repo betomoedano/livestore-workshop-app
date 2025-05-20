@@ -1,6 +1,6 @@
 import { use } from "react";
 import { AuthContext } from "../context/auth";
-import { nanoid } from "@livestore/utils/nanoid";
+import { nanoid } from "@livestore/livestore";
 import { useQuery, useStore } from "@livestore/react";
 import { events } from "@workshop/shared/schema";
 import { noteItemStyles } from "@workshop/shared/styles/note-item";
